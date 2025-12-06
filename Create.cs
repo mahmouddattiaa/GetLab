@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GetLab
+{
+    public partial class Create : Form
     {
-    public partial class Form1 : Form
+        public Create()
         {
-        public Form1 ( )
-            {
-            InitializeComponent ( );
-            }
+            InitializeComponent();
+        }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
     }
-    }
+}
