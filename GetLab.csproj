@@ -70,6 +70,30 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Teachercs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Teachercs.Designer.cs">
+      <DependentUpon>Teachercs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Welcome_student.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Welcome_student.Designer.cs">
+      <DependentUpon>Welcome_student.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Assistantcs.resx">
+      <DependentUpon>Assistantcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Create.resx">
+      <DependentUpon>Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -98,6 +122,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Form Logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGO.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGOOO.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
