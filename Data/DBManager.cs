@@ -58,7 +58,19 @@ namespace GetLab.Data
                 }
             return myCommand.ExecuteNonQuery ( );
             }
+        // Add this inside your DBManager class
+        public object ExecuteScalar ( string storedProcedureName, SqlParameter[] parameters )
+            {
+            SqlCommand myCommand = new SqlCommand ( storedProcedureName, myConnection );
+            myCommand.CommandType = CommandType.StoredProcedure;
+            if ( parameters != null )
+                {
+                myCommand.Parameters.AddRange ( parameters );
+                }
 
+            // ExecuteScalar returns the first column of the first row (e.g., "1")
+            return myCommand.ExecuteScalar ( );
+            }
         public void CloseConnection ( )
             {
             if ( myConnection != null && myConnection.State == ConnectionState.Open )

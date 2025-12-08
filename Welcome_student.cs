@@ -12,14 +12,22 @@ namespace GetLab
 {
     public partial class Welcome_student : Form
     {
-        public Welcome_student()
+        public string ID;
+        public Welcome_student( string uniID )
         {
+             ID = uniID;
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            studentsreservation s1 = new studentsreservation(ID);
+            s1.Show ( );
         }
-    }
+
+        private void Welcome_student_Load ( object sender, EventArgs e )
+            {
+
+            }
+        }
 }

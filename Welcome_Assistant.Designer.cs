@@ -1,6 +1,6 @@
 ﻿namespace GetLab
 {
-    partial class Assistantcs
+    partial class Welcome_Assistant
     {
         /// <summary>
         /// Required designer variable.
@@ -41,9 +41,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Uighur", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(82, 50);
+            this.label1.Location = new System.Drawing.Point(92, 62);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(985, 72);
+            this.label1.Size = new System.Drawing.Size(1182, 85);
             this.label1.TabIndex = 2;
             this.label1.Text = "Welcome to the Lab Equipment Management System";
             // 
@@ -51,9 +51,10 @@
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Location = new System.Drawing.Point(305, 175);
+            this.button1.Location = new System.Drawing.Point(343, 219);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(535, 61);
+            this.button1.Size = new System.Drawing.Size(602, 76);
             this.button1.TabIndex = 12;
             this.button1.Text = "Equipment Management";
             this.button1.UseVisualStyleBackColor = true;
@@ -62,9 +63,10 @@
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button2.Location = new System.Drawing.Point(305, 242);
+            this.button2.Location = new System.Drawing.Point(343, 302);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(535, 61);
+            this.button2.Size = new System.Drawing.Size(602, 76);
             this.button2.TabIndex = 13;
             this.button2.Text = "Room / Storage Management";
             this.button2.UseVisualStyleBackColor = true;
@@ -73,9 +75,10 @@
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button3.Location = new System.Drawing.Point(305, 309);
+            this.button3.Location = new System.Drawing.Point(343, 386);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(535, 61);
+            this.button3.Size = new System.Drawing.Size(602, 76);
             this.button3.TabIndex = 14;
             this.button3.Text = "Reservations";
             this.button3.UseVisualStyleBackColor = true;
@@ -85,9 +88,10 @@
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button4.Location = new System.Drawing.Point(305, 376);
+            this.button4.Location = new System.Drawing.Point(343, 470);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(535, 61);
+            this.button4.Size = new System.Drawing.Size(602, 76);
             this.button4.TabIndex = 15;
             this.button4.Text = "Reports";
             this.button4.UseVisualStyleBackColor = true;
@@ -96,27 +100,30 @@
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button5.Location = new System.Drawing.Point(305, 443);
+            this.button5.Location = new System.Drawing.Point(343, 554);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(535, 61);
+            this.button5.Size = new System.Drawing.Size(602, 76);
             this.button5.TabIndex = 16;
             this.button5.Text = "Logout";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // Assistantcs
+            // Welcome_Assistant
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1145, 567);
+            this.ClientSize = new System.Drawing.Size(1288, 709);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Name = "Assistantcs";
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "Welcome_Assistant";
             this.Text = "Assistantcs";
+            this.Load += new System.EventHandler(this.Welcome_Assistant_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

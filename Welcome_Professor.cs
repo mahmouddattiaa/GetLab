@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GetLab
 {
-    public partial class Assistantcs : Form
+    public partial class Welcome_Professor : Form
     {
-        public Assistantcs()
+        public Welcome_Professor()
         {
             InitializeComponent();
         }
@@ -21,5 +21,10 @@ namespace GetLab
         {
 
         }
-    }
+
+        private void Welcome_Professor_Load ( object sender, EventArgs e )
+            {
+
+            }
+        }
 }
