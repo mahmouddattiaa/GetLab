@@ -50,32 +50,36 @@
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Data\DBManager.cs" />
     <Compile Include="Data\SecurityHelper.cs" />
-    <Compile Include="Welcome_Assistant.cs">
+    <Compile Include="Forms\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Helpers\FormHelper.cs" />
+    <Compile Include="Helpers\ValidationHelper.cs" />
+    <Compile Include="Models\Lab.cs" />
+    <Compile Include="Models\Report.cs" />
+    <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Welcome_Assistant.cs" />
     <Compile Include="Welcome_Assistant.Designer.cs">
       <DependentUpon>Welcome_Assistant.cs</DependentUpon>
     </Compile>
-    <Compile Include="Create.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Create.cs" />
     <Compile Include="Create.Designer.cs">
       <DependentUpon>Create.cs</DependentUpon>
     </Compile>
-    <Compile Include="login.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="login.cs" />
     <Compile Include="login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="MyReservations.cs" />
+    <Compile Include="MyReservations.Designer.cs">
+      <DependentUpon>MyReservations.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,21 +89,15 @@
     <Compile Include="studentsreservation.Designer.cs">
       <DependentUpon>studentsreservation.cs</DependentUpon>
     </Compile>
-    <Compile Include="submitreport.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="submitreport.cs" />
     <Compile Include="submitreport.Designer.cs">
       <DependentUpon>submitreport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Welcome_Professor.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Welcome_Professor.cs" />
     <Compile Include="Welcome_Professor.Designer.cs">
       <DependentUpon>Welcome_Professor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Welcome_student.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Welcome_student.cs" />
     <Compile Include="Welcome_student.Designer.cs">
       <DependentUpon>Welcome_student.cs</DependentUpon>
     </Compile>
@@ -109,8 +107,8 @@
     <EmbeddedResource Include="Create.resx">
       <DependentUpon>Create.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="MyReservations.resx">
+      <DependentUpon>MyReservations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -134,6 +132,7 @@
     <EmbeddedResource Include="Welcome_student.resx">
       <DependentUpon>Welcome_student.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="PROJECT_REORGANIZATION_COMPLETE.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -148,6 +147,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ReorganizeProject.ps1" />
     <None Include="Resources\Form Logo.jpg" />
   </ItemGroup>
   <ItemGroup>

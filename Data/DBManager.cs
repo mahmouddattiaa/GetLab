@@ -9,74 +9,126 @@ namespace GetLab.Data
         {
         // Read the connection string from App.config
         private static readonly string connectionString =
-            ConfigurationManager.ConnectionStrings["GetLabConnection"].ConnectionString;
+    ConfigurationManager.ConnectionStrings["GetLabConnection"]?.ConnectionString;
 
-        private SqlConnection myConnection;
+        public DBManager()
+        {
+  // Validate connection string exists
+        if (string.IsNullOrEmpty(connectionString))
+   {
+       throw new Exception("Connection string 'GetLabConnection' not found in App.config");
+     }
 
-        public DBManager ( )
+ // Test connection on initialization
+try
             {
-            myConnection = new SqlConnection ( connectionString );
-            try
-                {
-                myConnection.Open ( );
-                }
-            catch ( Exception ex )
-                {
-                // This is critical for debugging connection issues
-                throw new Exception ( "Database connection failed.", ex );
-                }
+  using (SqlConnection testConnection = new SqlConnection(connectionString))
+     {
+       testConnection.Open();
+     }
             }
+ catch (Exception ex)
+         {
+         throw new Exception("Database connection failed during initialization.", ex);
+     }
+        }
 
         // SECURE method for executing queries that READ data
-        public DataTable ExecuteReader ( string storedProcedureName, SqlParameter[] parameters )
-            {
-            SqlCommand myCommand = new SqlCommand ( storedProcedureName, myConnection );
-            myCommand.CommandType = CommandType.StoredProcedure;
-            if ( parameters != null )
-                {
-                myCommand.Parameters.AddRange ( parameters );
-                }
+        public DataTable ExecuteReader(string storedProcedureName, SqlParameter[] parameters)
+{
+            DataTable dt = new DataTable();
 
-            SqlDataReader reader = myCommand.ExecuteReader ( );
-            DataTable dt = new DataTable ( );
-            if ( reader.HasRows )
+          using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+   using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+           {
+   command.CommandType = CommandType.StoredProcedure;
+  
+     if (parameters != null)
+             {
+     command.Parameters.AddRange(parameters);
+    }
+
+ try
                 {
-                dt.Load ( reader );
-                }
-            reader.Close ( );
+       connection.Open();
+using (SqlDataReader reader = command.ExecuteReader())
+         {
+  if (reader.HasRows)
+       {
+   dt.Load(reader);
+          }
+ }
+             }
+           catch (Exception ex)
+        {
+        throw new Exception($"Error executing stored procedure '{storedProcedureName}'", ex);
+       }
+             }
+       }
+
             return dt;
-            }
+      }
 
         // SECURE method for executing queries that CHANGE data
-        public int ExecuteNonQuery ( string storedProcedureName, SqlParameter[] parameters )
-            {
-            SqlCommand myCommand = new SqlCommand ( storedProcedureName, myConnection );
-            myCommand.CommandType = CommandType.StoredProcedure;
-            if ( parameters != null )
-                {
-                myCommand.Parameters.AddRange ( parameters );
-                }
-            return myCommand.ExecuteNonQuery ( );
-            }
-        // Add this inside your DBManager class
-        public object ExecuteScalar ( string storedProcedureName, SqlParameter[] parameters )
-            {
-            SqlCommand myCommand = new SqlCommand ( storedProcedureName, myConnection );
-            myCommand.CommandType = CommandType.StoredProcedure;
-            if ( parameters != null )
-                {
-                myCommand.Parameters.AddRange ( parameters );
-                }
+    public int ExecuteNonQuery(string storedProcedureName, SqlParameter[] parameters)
+        {
+      using (SqlConnection connection = new SqlConnection(connectionString))
+          {
+        using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+      {
+             command.CommandType = CommandType.StoredProcedure;
+  
+         if (parameters != null)
+  {
+       command.Parameters.AddRange(parameters);
+     }
 
-            // ExecuteScalar returns the first column of the first row (e.g., "1")
-            return myCommand.ExecuteScalar ( );
-            }
-        public void CloseConnection ( )
-            {
-            if ( myConnection != null && myConnection.State == ConnectionState.Open )
-                {
-                myConnection.Close ( );
-                }
+             try
+         {
+ connection.Open();
+   return command.ExecuteNonQuery();
+             }
+           catch (Exception ex)
+   {
+     throw new Exception($"Error executing stored procedure '{storedProcedureName}'", ex);
+           }
+         }
             }
         }
+
+        // Method for executing scalar queries (returns single value)
+      public object ExecuteScalar(string storedProcedureName, SqlParameter[] parameters)
+        {
+   using (SqlConnection connection = new SqlConnection(connectionString))
+         {
+   using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+          {
+            command.CommandType = CommandType.StoredProcedure;
+    
+   if (parameters != null)
+             {
+        command.Parameters.AddRange(parameters);
     }
+
+        try
+            {
+          connection.Open();
+      return command.ExecuteScalar();
+       }
+      catch (Exception ex)
+         {
+            throw new Exception($"Error executing stored procedure '{storedProcedureName}'", ex);
+                    }
+     }
+     }
+        }
+
+        // This method is now obsolete but kept for backward compatibility
+        public void CloseConnection()
+      {
+            // No longer needed since connections are managed per operation
+      // Method kept for backward compatibility
+        }
+    }
+}

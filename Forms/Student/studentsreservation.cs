@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using GetLab.Controller; // Make sure to use your Controller namespace
 using ControllerClass = GetLab.Controller.Controller;
 
-namespace GetLab
+namespace GetLab.Forms.Student
     {
     public partial class studentsreservation : Form
         {
@@ -24,14 +24,24 @@ namespace GetLab
             {
             // We need a function in Controller to get available items
             // Assuming you added 'GetAvailableEquipment' to Controller as discussed before
-            DataTable dt = controller.GetAvailableEquipment ( );
+            DataTable dt = controller.GetAvailableEquipment( );
 
             // Bind the data to the gray box (DataGridView)
             // Note: Make sure your DataGridView is named 'dataGridView1' or change this name
             dataGridView1.DataSource = dt;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             }
 
         // 3. Reserve Button Click
+
+
+        private void txtSearch_TextChanged ( object sender, EventArgs e )
+            {
+            DataTable dt = controller.SearchEquipment ( txtSearch.Text );
+            dataGridView1.DataSource = dt;
+            }
+
         private void reserveBtn_Click ( object sender, EventArgs e )
             {
             // A. Validation: Did they select a row?

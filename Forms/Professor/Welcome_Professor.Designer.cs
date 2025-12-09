@@ -1,4 +1,4 @@
-﻿namespace GetLab
+﻿namespace GetLab.Forms.Professor
 {
     partial class Welcome_Professor
     {

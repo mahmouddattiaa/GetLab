@@ -1,4 +1,4 @@
-﻿namespace GetLab
+﻿namespace GetLab.Forms.Authentication
 {
     partial class Create
     {

@@ -1,6 +1,6 @@
-﻿namespace GetLab
+﻿namespace GetLab.Forms.Student
     {
-    partial class Form2
+    partial class MyReservations
         {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,8 @@
         private void InitializeComponent ( )
             {
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dgvHistory = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -44,27 +44,28 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "View My Reservations";
             // 
-            // dataGridView1
+            // dgvHistory
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(189, 162);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(611, 333);
-            this.dataGridView1.TabIndex = 6;
+            this.dgvHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvHistory.Location = new System.Drawing.Point(189, 162);
+            this.dgvHistory.Name = "dgvHistory";
+            this.dgvHistory.RowHeadersWidth = 62;
+            this.dgvHistory.RowTemplate.Height = 28;
+            this.dgvHistory.Size = new System.Drawing.Size(611, 333);
+            this.dgvHistory.TabIndex = 6;
             // 
-            // Form2
+            // MyReservations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(991, 665);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvHistory);
             this.Controls.Add(this.label1);
-            this.Name = "Form2";
+            this.Name = "MyReservations";
             this.Text = "Form2";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.MyReservations_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -72,6 +73,6 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvHistory;
         }
     }

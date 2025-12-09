@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GetLab
+namespace GetLab.Forms.Professor
 {
-    public partial class Welcome_Professor : Form
+    public partial class Welcome_Professor : GetLab.Forms.BaseForm
     {
         public Welcome_Professor()
         {

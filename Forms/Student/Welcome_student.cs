@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GetLab
+namespace GetLab.Forms.Student
 {
-    public partial class Welcome_student : Form
+    public partial class Welcome_student : GetLab.Forms.BaseForm
     {
         public string ID;
         public Welcome_student( string uniID )
@@ -27,6 +27,13 @@ namespace GetLab
 
         private void Welcome_student_Load ( object sender, EventArgs e )
             {
+
+            }
+
+        private void viewReservationsBT_Click ( object sender, EventArgs e )
+            {
+            MyReservations reservations = new MyReservations(ID);
+            reservations.Show ( );
 
             }
         }

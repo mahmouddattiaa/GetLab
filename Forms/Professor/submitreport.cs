@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GetLab
+namespace GetLab.Forms.Professor
     {
-    public partial class Form2 : Form
+    public partial class submitreport : GetLab.Forms.BaseForm
         {
-        public Form2 ( )
+        public submitreport ( )
             {
             InitializeComponent ( );
+            }
+
+        private void button1_Click ( object sender, EventArgs e )
+            {
+
             }
         }
     }

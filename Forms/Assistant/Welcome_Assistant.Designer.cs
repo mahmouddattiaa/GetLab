@@ -1,4 +1,4 @@
-﻿namespace GetLab
+﻿namespace GetLab.Forms.Assistant
 {
     partial class Welcome_Assistant
     {

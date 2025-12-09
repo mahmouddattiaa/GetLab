@@ -1,4 +1,4 @@
-﻿namespace GetLab
+﻿namespace GetLab.Forms.Student
     {
     partial class studentsreservation
         {
@@ -30,7 +30,7 @@
             {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -60,12 +60,13 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Equipment";
             // 
-            // textBox1
+            // txtSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(266, 155);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(197, 26);
-            this.textBox1.TabIndex = 6;
+            this.txtSearch.Location = new System.Drawing.Point(266, 155);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(197, 26);
+            this.txtSearch.TabIndex = 6;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // dataGridView1
             // 
@@ -74,7 +75,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(537, 323);
+            this.dataGridView1.Size = new System.Drawing.Size(737, 323);
             this.dataGridView1.TabIndex = 7;
             // 
             // dateTimePicker1
@@ -99,13 +100,14 @@
             // 
             this.reserveBtn.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reserveBtn.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.reserveBtn.Location = new System.Drawing.Point(617, 466);
+            this.reserveBtn.Location = new System.Drawing.Point(655, 537);
             this.reserveBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.reserveBtn.Name = "reserveBtn";
             this.reserveBtn.Size = new System.Drawing.Size(214, 67);
             this.reserveBtn.TabIndex = 13;
             this.reserveBtn.Text = "Reserve";
             this.reserveBtn.UseVisualStyleBackColor = true;
+            this.reserveBtn.Click += new System.EventHandler(this.reserveBtn_Click);
             // 
             // studentsreservation
             // 
@@ -117,7 +119,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "studentsreservation";
@@ -132,7 +134,7 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;

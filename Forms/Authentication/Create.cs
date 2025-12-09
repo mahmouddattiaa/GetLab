@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GetLab
+namespace GetLab.Forms.Authentication
 {
-    public partial class Create : Form
+    public partial class Create : GetLab.Forms.BaseForm
     {
         public Create()
         {
