@@ -68,8 +68,8 @@ if (string.IsNullOrEmpty(password))
 
      if (result.Rows.Count > 0)
   {
-          string role = result.Rows[0]["Role"].ToString();
-   string userName = result.Rows[0]["UserName"].ToString();
+          string role = result.Rows[0]["UserRole"].ToString();
+   string userName = result.Rows[0]["FullName"].ToString();
 
    ShowSuccess($"Welcome, {userName}!", "Login Successful");
 

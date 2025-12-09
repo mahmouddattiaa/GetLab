@@ -60,13 +60,15 @@ namespace GetLab.Controller
             }
 
         // FEATURE 3: Reserve an item
+        // FEATURE 3: Reserve an item
         public bool ReserveEquipment ( string userID, int equipmentID, DateTime dueDate )
             {
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@UserID", userID),
-                new SqlParameter("@EquipmentID", equipmentID),
-                new SqlParameter("@DueDate", dueDate)
+        // FIX: Change "@UserID" to "@UniversityID" to match the Stored Procedure
+        new SqlParameter("@UniversityID", userID),
+        new SqlParameter("@EquipmentID", equipmentID),
+        new SqlParameter("@DueDate", dueDate)
             };
 
             // We use ExecuteScalar because our SP returns a single number (1 or 0)
@@ -84,7 +86,25 @@ namespace GetLab.Controller
             };
             return dbMan.ExecuteReader ( "sp_GetMyReservations", parameters );
             }
+        // Add this to Controller.cs
 
+        // FEATURE 4: Return Equipment (Admin Only)
+        public bool ReturnEquipment ( int equipmentID, string condition )
+            {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@EquipmentID", equipmentID),
+        new SqlParameter("@Condition", condition)
+            };
+
+            object result = dbMan.ExecuteScalar ( "sp_ReturnEquipment", parameters );
+            return result != null && Convert.ToInt32 ( result ) == 1;
+            }
+        // Add this inside your Controller class
+        public DataTable GetAllActiveReservations ( )
+            {
+            return dbMan.ExecuteReader ( "sp_GetAllActiveReservations", null );
+            }
         // ... existing code ...
         public void TerminateConnection ( )
             {

@@ -12,7 +12,7 @@ namespace GetLab.Forms.Professor
 {
     public partial class Welcome_Professor : GetLab.Forms.BaseForm
     {
-        public Welcome_Professor()
+        public Welcome_Professor(string userID)
         {
             InitializeComponent();
         }

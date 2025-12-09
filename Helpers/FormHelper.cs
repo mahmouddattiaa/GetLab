@@ -6,121 +6,60 @@ using GetLab.Forms.Professor;
 using GetLab.Forms.Assistant;
 
 namespace GetLab.Helpers
-{
-    /// <summary>
-    /// Helper class for form navigation throughout the application
-    /// </summary>
-    public static class FormHelper
     {
-        /// <summary>
-  /// Navigate to the appropriate dashboard based on user role
-        /// </summary>
-        /// <param name="role">User's role (Student, Professor, Assistant, Admin)</param>
-     /// <param name="userName">User's name for personalization</param>
-      /// <param name="userId">User's ID</param>
-    /// <param name="currentForm">The form to close/hide</param>
-    public static void NavigateBasedOnRole(string role, string userName, string userId, Form currentForm)
+    public static class FormHelper
         {
+        // This is just a big "Switch" statement to open the right dashboard
+        public static void NavigateBasedOnRole ( string role, string userName, string userId, Form currentForm )
+            {
             Form targetForm = null;
 
-     switch (role?.ToLower())
-            {
-  case "student":
-   targetForm = new Welcome_student();
-        break;
-            
-  case "professor":
-   targetForm = new Welcome_Professor();
-  break;
- 
-  case "assistant":
-     targetForm = new Welcome_Assistant();
-break;
- 
-      case "admin":
-            // TODO: Create admin dashboard
-  MessageBox.Show("Admin dashboard not yet implemented.", "Info", 
-    MessageBoxButtons.OK, MessageBoxIcon.Information);
-         return;
-       
-        default:
-    MessageBox.Show($"Unknown user role: {role}", "Error", 
-               MessageBoxButtons.OK, MessageBoxIcon.Error);
-           return;
-      }
+            // I added .ToLower() so "Student" and "student" both work
+            switch ( role?.ToLower ( ) )
+                {
+                case "student":
+                    targetForm = new Welcome_student ( userId );
+                    break;
 
-        if (targetForm != null)
-            {
-        targetForm.Show();
-  currentForm.Hide();
-   }
-        }
+                case "teacher": // Changed from "professor" to match your Database Role
+                case "professor":
+                    // FIX: Pass the userId here too!
+                    targetForm = new Welcome_Professor ( userId );
+                    break;
 
-        /// <summary>
-   /// Logout and return to login form
-        /// </summary>
-        /// <param name="currentForm">The form to close</param>
-        public static void Logout(Form currentForm)
-        {
-     var result = MessageBox.Show(
- "Are you sure you want to logout?", 
-      "Confirm Logout", 
-     MessageBoxButtons.YesNo, 
-          MessageBoxIcon.Question);
+                case "admin":
+                case "assistant":
+                    // FIX: Pass the userId here too!
+                    targetForm = new Welcome_Assistant ( userId );
+                    break;
 
-       if (result == DialogResult.Yes)
-            {
-      var loginForm = new login();
-           loginForm.Show();
-         currentForm.Close();
+                default:
+                    MessageBox.Show ( "Role not recognized: " + role );
+                    return;
+                }
+
+            if ( targetForm != null )
+                {
+                targetForm.Show ( );
+                currentForm.Hide ( );
+                }
             }
- }
 
-        /// <summary>
- /// Navigate to student reservation form
-    /// </summary>
-    public static void OpenStudentReservation(Form currentForm)
-        {
-            var reservationForm = new studentsreservation();
-  reservationForm.Show();
-  currentForm.Hide();
-        }
-
-        /// <summary>
-        /// Navigate to my reservations form
-   /// </summary>
- public static void OpenMyReservations(Form currentForm)
-        {
-        var myReservationsForm = new MyReservations();
-            myReservationsForm.Show();
-    currentForm.Hide();
- }
-
-        /// <summary>
-   /// Navigate to submit report form
-   /// </summary>
-     public static void OpenSubmitReport(Form currentForm)
-{
-            var submitReportForm = new submitreport();
-        submitReportForm.Show();
-            currentForm.Hide();
-    }
-
-      /// <summary>
-      /// Close the application
-    /// </summary>
-        public static void ExitApplication()
-        {
-   var result = MessageBox.Show(
-                "Are you sure you want to exit?", 
-            "Confirm Exit", 
-    MessageBoxButtons.YesNo, 
- MessageBoxIcon.Question);
-
-        if (result == DialogResult.Yes)
+        // This just opens the Reservation Form
+        public static void OpenStudentReservation ( string userId, Form currentForm )
             {
-        Application.Exit();
+            // It passes the ID correctly here
+            var reservationForm = new studentsreservation ( userId );
+            reservationForm.Show ( );
+            currentForm.Hide ( ); // Or currentForm.Close() if you want
+            }
+
+        // This handles the Logout logic
+        public static void Logout ( Form currentForm )
+            {
+            var loginForm = new login ( );
+            loginForm.Show ( );
+            currentForm.Close ( );
             }
         }
     }
-}

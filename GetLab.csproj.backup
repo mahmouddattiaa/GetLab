@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -50,12 +50,6 @@
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Data\DBManager.cs" />
     <Compile Include="Data\SecurityHelper.cs" />
-    <Compile Include="Forms\Assistant\ReturnItemForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Assistant\ReturnItemForm.Designer.cs">
-      <DependentUpon>ReturnItemForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,72 +59,55 @@
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Forms\Assistant\Welcome_Assistant.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Assistant\Welcome_Assistant.Designer.cs">
+    <Compile Include="Welcome_Assistant.cs" />
+    <Compile Include="Welcome_Assistant.Designer.cs">
       <DependentUpon>Welcome_Assistant.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Authentication\Create.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Authentication\Create.Designer.cs">
+    <Compile Include="Create.cs" />
+    <Compile Include="Create.Designer.cs">
       <DependentUpon>Create.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Authentication\login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Authentication\login.Designer.cs">
+    <Compile Include="login.cs" />
+    <Compile Include="login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Student\MyReservations.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Student\MyReservations.Designer.cs">
+    <Compile Include="MyReservations.cs" />
+    <Compile Include="MyReservations.Designer.cs">
       <DependentUpon>MyReservations.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Assistant\ReturnItemForm.resx">
-      <DependentUpon>ReturnItemForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Authentication\login.resx">
+    <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="Forms\Student\studentsreservation.cs">
+    <Compile Include="studentsreservation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Student\studentsreservation.Designer.cs">
+    <Compile Include="studentsreservation.Designer.cs">
       <DependentUpon>studentsreservation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Professor\submitreport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Professor\submitreport.Designer.cs">
+    <Compile Include="submitreport.cs" />
+    <Compile Include="submitreport.Designer.cs">
       <DependentUpon>submitreport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Professor\Welcome_Professor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Professor\Welcome_Professor.Designer.cs">
+    <Compile Include="Welcome_Professor.cs" />
+    <Compile Include="Welcome_Professor.Designer.cs">
       <DependentUpon>Welcome_Professor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Student\Welcome_student.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Student\Welcome_student.Designer.cs">
+    <Compile Include="Welcome_student.cs" />
+    <Compile Include="Welcome_student.Designer.cs">
       <DependentUpon>Welcome_student.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\Assistant\Welcome_Assistant.resx">
+    <EmbeddedResource Include="Welcome_Assistant.resx">
       <DependentUpon>Welcome_Assistant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Authentication\Create.resx">
+    <EmbeddedResource Include="Create.resx">
       <DependentUpon>Create.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Student\MyReservations.resx">
+    <EmbeddedResource Include="MyReservations.resx">
       <DependentUpon>MyReservations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -143,19 +120,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Forms\Student\studentsreservation.resx">
+    <EmbeddedResource Include="studentsreservation.resx">
       <DependentUpon>studentsreservation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Professor\submitreport.resx">
+    <EmbeddedResource Include="submitreport.resx">
       <DependentUpon>submitreport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Professor\Welcome_Professor.resx">
+    <EmbeddedResource Include="Welcome_Professor.resx">
       <DependentUpon>Welcome_Professor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Student\Welcome_student.resx">
+    <EmbeddedResource Include="Welcome_student.resx">
       <DependentUpon>Welcome_student.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="FINAL_FIX_COMPLETE.md" />
     <None Include="PROJECT_REORGANIZATION_COMPLETE.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

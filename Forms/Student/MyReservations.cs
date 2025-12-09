@@ -7,24 +7,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ControllerClass = GetLab.Controller.Controller;
 
 namespace GetLab.Forms.Student
     {
     public partial class MyReservations : GetLab.Forms.BaseForm
-        {
-        private ControllerClass controller;
+ {
+  private ControllerClass controller;
         private string loggedInUniID;
         public MyReservations (string ID )
-            {
-            InitializeComponent ( );
+       {
+   InitializeComponent ( );
             controller = new ControllerClass ( );
             loggedInUniID = ID;
+ }
+
+   private void MyReservations_Load ( object sender, EventArgs e )
+{
+     try
+            {
+     DataTable dt = controller.GetMyReservations ( loggedInUniID );
+           dgvHistory.DataSource = dt;
+        
+       if (dt.Rows.Count == 0)
+ {
+         ShowWarning("You have no reservations yet.", "No Reservations");
+       }
+      }
+         catch (Exception ex)
+            {
+                HandleException(ex, "loading reservations");
+        }
             }
 
-        private void MyReservations_Load ( object sender, EventArgs e )
-            {
-            DataTable dt = controller.GetMyReservations ( loggedInUniID );
-            dgvHistory.DataSource = dt;
-            }
+    protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+     // Clean up database connection when form closes
+    controller?.TerminateConnection();
+         base.OnFormClosing(e);
+        }
         }
     }

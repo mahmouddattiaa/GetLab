@@ -1,40 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GetLab.Forms.Student
-{
-    public partial class Welcome_student : GetLab.Forms.BaseForm
     {
-        public string ID;
-        public Welcome_student( string uniID )
+    // We keep 'BaseForm' here just so the Designer doesn't break, 
+    // but inside we will use standard code.
+    public partial class Welcome_student : GetLab.Forms.BaseForm
         {
-             ID = uniID;
-            InitializeComponent();
-        }
+        private string loggedInUserID;
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            studentsreservation s1 = new studentsreservation(ID);
-            s1.Show ( );
-        }
+        public Welcome_student ( string uniID )
+            {
+            InitializeComponent ( );
+            loggedInUserID = uniID; // Store the ID passed from Login
+            }
 
         private void Welcome_student_Load ( object sender, EventArgs e )
             {
-
+            // Optional: You can change the window title
+            this.Text = "Student Dashboard - " + loggedInUserID;
             }
 
+        // Button: Go to Reservation
+        private void button1_Click ( object sender, EventArgs e )
+            {
+            // This is the standard way to open a form:
+            studentsreservation resForm = new studentsreservation ( loggedInUserID );
+            resForm.Show ( );
+            // this.Hide(); // Uncomment this if you want the Welcome screen to disappear
+            }
+
+        // Button: View My History
         private void viewReservationsBT_Click ( object sender, EventArgs e )
             {
-            MyReservations reservations = new MyReservations(ID);
-            reservations.Show ( );
-
+            // Standard way to open a form:
+            MyReservations historyForm = new MyReservations ( loggedInUserID );
+            historyForm.Show ( );
             }
         }
-}
+    }
