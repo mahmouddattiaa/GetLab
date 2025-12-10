@@ -155,7 +155,8 @@
     <EmbeddedResource Include="Forms\Student\Welcome_student.resx">
       <DependentUpon>Welcome_student.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="FINAL_FIX_COMPLETE.md" />
+    <None Include="DatabaseScripts\README.md" />
+    <None Include="PROJECT_DESCRIPTION.md" />
     <None Include="PROJECT_REORGANIZATION_COMPLETE.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -171,7 +172,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ReorganizeProject.ps1" />
+    <None Include="README.md" />
     <None Include="Resources\Form Logo.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -180,8 +181,13 @@
   <ItemGroup>
     <None Include="Resources\LOGOOO.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="DatabaseScripts\" />
+    <Content Include="DatabaseScripts\00_Master_Setup.sql" />
+    <Content Include="DatabaseScripts\01_Database_Schema.sql" />
+    <Content Include="DatabaseScripts\02_Stored_Procedures.sql" />
+    <Content Include="DatabaseScripts\03_Sample_Data.sql" />
+    <Content Include="DatabaseScripts\project DB.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
