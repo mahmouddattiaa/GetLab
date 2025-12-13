@@ -50,7 +50,13 @@
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Data\DBManager.cs" />
     <Compile Include="Data\SecurityHelper.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\Assistant\MaintenanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Assistant\MaintenanceForm.Designer.cs">
+      <DependentUpon>MaintenanceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assistant\ReturnItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
@@ -58,8 +64,50 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Assistant\MaintenanceForm.resx">
+      <DependentUpon>MaintenanceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assistant\ReturnItemForm.resx">
+      <DependentUpon>ReturnItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Authentication\login.resx">
+      <DependentUpon>login.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Forms\Student\studentsreservation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Student\studentsreservation.Designer.cs">
+      <DependentUpon>studentsreservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Professor\submitreport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Professor\submitreport.Designer.cs">
+      <DependentUpon>submitreport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Professor\Welcome_Professor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Professor\Welcome_Professor.Designer.cs">
+      <DependentUpon>Welcome_Professor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Student\Welcome_student.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Student\Welcome_student.Designer.cs">
+      <DependentUpon>Welcome_student.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\Assistant\Welcome_Assistant.resx">
+      <DependentUpon>Welcome_Assistant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Authentication\Create.resx">
+      <DependentUpon>Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Student\MyReservations.resx">
+      <DependentUpon>MyReservations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
