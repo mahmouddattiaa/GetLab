@@ -53,36 +53,30 @@ namespace GetLab.Forms.Professor
             viewEquipmentProfGrid.AllowUserToDeleteRows = false;
             viewEquipmentProfGrid.MultiSelect = false;
 
-            // Format columns if they exist
-            if (viewEquipmentProfGrid.Columns.Count > 0)
+            if (viewEquipmentProfGrid.Columns.Contains("EquipmentID"))
             {
-                // Make ID column smaller
-                if (viewEquipmentProfGrid.Columns.Contains("EquipmentID"))
-                {
-                    viewEquipmentProfGrid.Columns["EquipmentID"].Width = 50;
-                    viewEquipmentProfGrid.Columns["EquipmentID"].HeaderText = "ID";
-                }
+                viewEquipmentProfGrid.Columns["EquipmentID"].Width = 50;
+                viewEquipmentProfGrid.Columns["EquipmentID"].HeaderText = "ID";
+            }
 
-                // Set column headers to friendly names
-                if (viewEquipmentProfGrid.Columns.Contains("EquipmentName"))
-                {
-                    viewEquipmentProfGrid.Columns["EquipmentName"].HeaderText = "Equipment Name";
-                }
-                if (viewEquipmentProfGrid.Columns.Contains("ModelName"))
-                    viewEquipmentProfGrid.Columns["ModelName"].HeaderText = "Model";
-                if (viewEquipmentProfGrid.Columns.Contains("RoomName"))
-                {
-                    viewEquipmentProfGrid.Columns["RoomName"].HeaderText = "Location";
-                    viewEquipmentProfGrid.Columns["RoomName"].Width = 150;
-                }
-                if (viewEquipmentProfGrid.Columns.Contains("CurrentStatus"))
-                {
-                    viewEquipmentProfGrid.Columns["CurrentStatus"].Width = 200;
-                    viewEquipmentProfGrid.Columns["CurrentStatus"].HeaderText = "Status";
-                }
+            // Set column headers to friendly names
+            if (viewEquipmentProfGrid.Columns.Contains("EquipmentName"))
+            {
+                viewEquipmentProfGrid.Columns["EquipmentName"].HeaderText = "Equipment Name";
+            }
+            if (viewEquipmentProfGrid.Columns.Contains("ModelName"))
+                viewEquipmentProfGrid.Columns["ModelName"].HeaderText = "Model";
+            if (viewEquipmentProfGrid.Columns.Contains("RoomName"))
+            {
+                viewEquipmentProfGrid.Columns["RoomName"].HeaderText = "Location";
+                viewEquipmentProfGrid.Columns["RoomName"].Width = 150;
+            }
+            if (viewEquipmentProfGrid.Columns.Contains("CurrentStatus"))
+            {
+                viewEquipmentProfGrid.Columns["CurrentStatus"].Width = 200;
+                viewEquipmentProfGrid.Columns["CurrentStatus"].HeaderText = "Status";
             }
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
