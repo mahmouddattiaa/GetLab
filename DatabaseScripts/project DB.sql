@@ -143,6 +143,21 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE sp_GetEquipmentByStatus
+    @Status NVARCHAR(20)
+AS
+BEGIN
+    SELECT 
+        E.EquipmentID, 
+        E.EquipmentName, 
+        E.ModelName, 
+        L.RoomName,
+        E.CurrentStatus
+    FROM Equipment E
+    JOIN Locations L ON E.LocationID = L.LocationID
+    WHERE E.CurrentStatus = @Status
+END
+
 -- SP: Search Equipment
 CREATE PROCEDURE sp_SearchEquipment
     @Keyword NVARCHAR(50)
@@ -315,3 +330,7 @@ INSERT INTO Equipment (EquipmentName, ModelName, SerialNumber, SupplierID, Locat
 ('DC Power Supply', 'KA3005D', 'PS-201', 2, 1, 'Available'),
 ('DC Power Supply', 'KA3005D', 'PS-202', 2, 1, 'Maintenance');
 GO
+
+
+INSERT INTO Users (UniversityID, FullName, Email, PasswordHash, UserRole, Major, Department) VALUES 
+('ahmed_teacher', 'Ahmed Bahgat (teacher)', 'adminahmed@getlab.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Teacher', NULL, NULL);
