@@ -48,6 +48,15 @@ namespace GetLab.Controller
             {
             return dbMan.ExecuteReader ( "sp_GetAvailableEquipment", null );
             }
+        public DataTable getEquipmentUsingStatus(string status)
+        {
+           SqlParameter[] parameters = new SqlParameter[]
+           {
+                new SqlParameter("@Status", status)
+           };
+                return dbMan.ExecuteReader("sp_GetEquipmentByStatus", parameters);
+        }
+
 
         // FEATURE 2: Search for specific items (by name)
         public DataTable SearchEquipment ( string keyword )
@@ -105,6 +114,7 @@ namespace GetLab.Controller
             {
             return dbMan.ExecuteReader ( "sp_GetAllActiveReservations", null );
             }
+        
         // ... existing code ...
         public void TerminateConnection ( )
             {

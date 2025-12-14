@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GetLab.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,13 @@ namespace GetLab.Forms.Professor
 {
     public partial class Welcome_Professor : GetLab.Forms.BaseForm
     {
-        public Welcome_Professor(string userID)
+        string userID;
+        string role;
+        public Welcome_Professor(string userID , string role)
         {
             InitializeComponent();
+            this.userID = userID;
+            this.role = role;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -26,5 +31,13 @@ namespace GetLab.Forms.Professor
             {
 
             }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            viewEquipments viewEquipments = new viewEquipments(userID, role);
+            viewEquipments.Show();
+
         }
+    }
 }

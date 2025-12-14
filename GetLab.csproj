@@ -59,6 +59,12 @@
     <Compile Include="Forms\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Professor\viewEquipments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Professor\viewEquipments.Designer.cs">
+      <DependentUpon>viewEquipments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\FormHelper.cs" />
     <Compile Include="Helpers\ValidationHelper.cs" />
     <Compile Include="Models\Lab.cs" />
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Authentication\Create.resx">
       <DependentUpon>Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Professor\viewEquipments.resx">
+      <DependentUpon>viewEquipments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Student\MyReservations.resx">
       <DependentUpon>MyReservations.cs</DependentUpon>
