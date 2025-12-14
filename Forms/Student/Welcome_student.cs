@@ -37,5 +37,16 @@ namespace GetLab.Forms.Student
             MyReservations historyForm = new MyReservations ( loggedInUserID );
             historyForm.Show ( );
             }
+
+        private void btnReport_Click ( object sender, EventArgs e )
+            {
+            submitreport reportForm = new submitreport ( this.loggedInUserID );
+            reportForm.Show ( );
+            }
+
+            private void Welcome_student_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
         }
     }

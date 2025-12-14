@@ -27,5 +27,11 @@ namespace GetLab.Forms.Assistant
             {
 
             }
+
+        private void btnMaintenance_Click ( object sender, EventArgs e )
+            {
+            MaintenanceForm maintenanceForm = new MaintenanceForm ( );
+            maintenanceForm.Show ( );
+            }
         }
 }

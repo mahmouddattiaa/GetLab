@@ -44,58 +44,6 @@ namespace GetLab.Controller
 
             return dbMan.ExecuteReader ( "sp_UserLogin", parameters );
             }
-        public DataTable GetAvailableEquipment ( )
-            {
-            return dbMan.ExecuteReader ( "sp_GetAvailableEquipment", null );
-            }
-
-        // FEATURE 2: Search for specific items (by name)
-        public DataTable SearchEquipment ( string keyword )
-            {
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@Keyword", keyword)
-            };
-            return dbMan.ExecuteReader ( "sp_SearchEquipment", parameters );
-            }
-
-        // FEATURE 3: Reserve an item
-        // FEATURE 3: Reserve an item
-        public bool ReserveEquipment ( string userID, int equipmentID, DateTime dueDate )
-            {
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-        // FIX: Change "@UserID" to "@UniversityID" to match the Stored Procedure
-        new SqlParameter("@UniversityID", userID),
-        new SqlParameter("@EquipmentID", equipmentID),
-        new SqlParameter("@DueDate", dueDate)
-            };
-
-            // We use ExecuteScalar because our SP returns a single number (1 or 0)
-            object result = dbMan.ExecuteScalar ( "sp_ReserveEquipment", parameters );
-
-            // If result is 1, return true (Success). If 0, return false.
-            return result != null && Convert.ToInt32 ( result ) == 1;
-            }
-        // Add this to Controller.cs
-        public DataTable GetMyReservations ( string universityID )
-            {
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-        new SqlParameter("@UniversityID", universityID)
-            };
-            return dbMan.ExecuteReader ( "sp_GetMyReservations", parameters );
-            }
-        // Add this to Controller.cs
-
-        // FEATURE 4: Return Equipment (Admin Only)
-        public bool ReturnEquipment ( int equipmentID, string condition )
-            {
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-        new SqlParameter("@EquipmentID", equipmentID),
-        new SqlParameter("@Condition", condition)
-            };
 
             object result = dbMan.ExecuteScalar ( "sp_ReturnEquipment", parameters );
             return result != null && Convert.ToInt32 ( result ) == 1;
@@ -106,6 +54,41 @@ namespace GetLab.Controller
             return dbMan.ExecuteReader ( "sp_GetAllActiveReservations", null );
             }
         // ... existing code ...
+        // Add this to Controller.cs
+
+        // FEATURE 6: Maintenance Management
+        public DataTable GetDamagedItems ( )
+            {
+            return dbMan.ExecuteReader ( "sp_GetDamagedEquipment", null );
+            }
+
+        public bool FixEquipment ( int equipmentID )
+            {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@EquipmentID", equipmentID)
+            };
+
+            // ExecuteNonQuery returns the number of rows affected. 
+            // If > 0, it means the update happened.
+            int rowsAffected = dbMan.ExecuteNonQuery ( "sp_FixEquipment", parameters );
+            return rowsAffected > 0;
+            }
+        // Add this to Controller.cs
+
+        // FEATURE: Submit a Report
+        public bool SubmitReport ( string universityID, int equipmentID, string description )
+            {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@UniversityID", universityID),
+        new SqlParameter("@EquipmentID", equipmentID),
+        new SqlParameter("@Description", description)
+            };
+
+            object result = dbMan.ExecuteScalar ( "sp_CreateMaintenanceReport", parameters );
+            return result != null && Convert.ToInt32 ( result ) == 1;
+            }
         public void TerminateConnection ( )
             {
             dbMan.CloseConnection ( );

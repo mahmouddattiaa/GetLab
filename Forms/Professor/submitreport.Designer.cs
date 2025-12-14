@@ -1,4 +1,4 @@
-﻿namespace GetLab.Forms.Professor
+namespace GetLab.Forms.Student
     {
     partial class submitreport
         {
@@ -30,10 +30,10 @@
             {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbEquipment = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.btnSubmit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -58,13 +58,13 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Equipment";
             // 
-            // comboBox1
+            // cmbEquipment
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(271, 205);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(229, 28);
-            this.comboBox1.TabIndex = 7;
+            this.cmbEquipment.FormattingEnabled = true;
+            this.cmbEquipment.Location = new System.Drawing.Point(271, 205);
+            this.cmbEquipment.Name = "cmbEquipment";
+            this.cmbEquipment.Size = new System.Drawing.Size(229, 28);
+            this.cmbEquipment.TabIndex = 7;
             // 
             // label3
             // 
@@ -77,26 +77,26 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Please describe the issue:";
             // 
-            // textBox1
+            // txtDescription
             // 
-            this.textBox1.Location = new System.Drawing.Point(447, 286);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(376, 119);
-            this.textBox1.TabIndex = 9;
+            this.txtDescription.Location = new System.Drawing.Point(447, 286);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(376, 119);
+            this.txtDescription.TabIndex = 9;
             // 
-            // button1
+            // btnSubmit
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Location = new System.Drawing.Point(56, 456);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(214, 67);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Submit";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSubmit.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubmit.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnSubmit.Location = new System.Drawing.Point(56, 456);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(214, 67);
+            this.btnSubmit.TabIndex = 12;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // submitreport
             // 
@@ -104,14 +104,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(944, 592);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnSubmit);
+            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbEquipment);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "submitreport";
             this.Text = "submitreport";
+            this.Load += new System.EventHandler(this.submitreport_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,9 +121,9 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbEquipment;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Button btnSubmit;
         }
     }

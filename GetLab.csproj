@@ -84,6 +84,13 @@
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Student\MyReservations.cs">
+    <Compile Include="Forms\Assistant\MaintenanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Assistant\MaintenanceForm.Designer.cs">
+      <DependentUpon>MaintenanceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assistant\ReturnItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Student\MyReservations.Designer.cs">
@@ -91,6 +98,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Assistant\MaintenanceForm.resx">
+      <DependentUpon>MaintenanceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Assistant\ReturnItemForm.resx">
       <DependentUpon>ReturnItemForm.cs</DependentUpon>
     </EmbeddedResource>

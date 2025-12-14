@@ -1,4 +1,5 @@
-﻿using System;
+using GetLab.Forms.Student;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,11 @@ namespace GetLab.Forms.Professor
 {
     public partial class Welcome_Professor : GetLab.Forms.BaseForm
     {
+        string loggedInUniID;
         public Welcome_Professor(string userID)
         {
             InitializeComponent();
+            loggedInUniID = userID;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -25,6 +28,12 @@ namespace GetLab.Forms.Professor
         private void Welcome_Professor_Load ( object sender, EventArgs e )
             {
 
+            }
+
+        private void btnReport_Click ( object sender, EventArgs e )
+            {
+            submitreport reportForm = new submitreport ( this.loggedInUniID );
+            reportForm.Show ( );
             }
         }
 }

@@ -34,6 +34,7 @@
             this.btnReturn = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.btnMaintenance = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -51,7 +52,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Location = new System.Drawing.Point(343, 219);
+            this.button1.Location = new System.Drawing.Point(343, 236);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(602, 76);
@@ -63,7 +64,7 @@
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button2.Location = new System.Drawing.Point(343, 302);
+            this.button2.Location = new System.Drawing.Point(343, 320);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(602, 76);
@@ -75,7 +76,7 @@
             // 
             this.btnReturn.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReturn.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnReturn.Location = new System.Drawing.Point(343, 386);
+            this.btnReturn.Location = new System.Drawing.Point(343, 404);
             this.btnReturn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(602, 76);
@@ -88,7 +89,7 @@
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button4.Location = new System.Drawing.Point(343, 470);
+            this.button4.Location = new System.Drawing.Point(343, 488);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(602, 76);
@@ -100,7 +101,7 @@
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button5.Location = new System.Drawing.Point(343, 554);
+            this.button5.Location = new System.Drawing.Point(343, 572);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(602, 76);
@@ -108,12 +109,26 @@
             this.button5.Text = "Logout";
             this.button5.UseVisualStyleBackColor = true;
             // 
+            // btnMaintenance
+            // 
+            this.btnMaintenance.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMaintenance.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnMaintenance.Location = new System.Drawing.Point(343, 151);
+            this.btnMaintenance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnMaintenance.Name = "btnMaintenance";
+            this.btnMaintenance.Size = new System.Drawing.Size(602, 76);
+            this.btnMaintenance.TabIndex = 17;
+            this.btnMaintenance.Text = "Maintenance / Repairs";
+            this.btnMaintenance.UseVisualStyleBackColor = true;
+            this.btnMaintenance.Click += new System.EventHandler(this.btnMaintenance_Click);
+            // 
             // Welcome_Assistant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1288, 709);
+            this.ClientSize = new System.Drawing.Size(1280, 661);
+            this.Controls.Add(this.btnMaintenance);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.btnReturn);
@@ -137,5 +152,6 @@
         private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-    }
+        private System.Windows.Forms.Button btnMaintenance;
+        }
 }
