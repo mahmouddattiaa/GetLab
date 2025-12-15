@@ -45,17 +45,73 @@ namespace GetLab.Controller
             return dbMan.ExecuteReader ( "sp_UserLogin", parameters );
             }
 
-            object result = dbMan.ExecuteScalar ( "sp_ReturnEquipment", parameters );
+        public bool ReturnEquipment ( int equipmentID )
+            {
+            SqlParameter[] parameters = new SqlParameter[]
+ {
+            new SqlParameter("@EquipmentID", equipmentID)
+ };
+
+        object result = dbMan.ExecuteScalar ( "sp_ReturnEquipment", parameters );
+      return result != null && Convert.ToInt32 ( result ) == 1;
+          }
+
+        // Overload for ReturnEquipment with condition parameter
+        public bool ReturnEquipment ( int equipmentID, string condition )
+            {
+   SqlParameter[] parameters = new SqlParameter[]
+    {
+         new SqlParameter("@EquipmentID", equipmentID),
+      new SqlParameter("@Condition", condition)
+          };
+
+        object result = dbMan.ExecuteScalar ( "sp_ReturnEquipmentWithCondition", parameters );
             return result != null && Convert.ToInt32 ( result ) == 1;
             }
+
+        public DataTable GetMyReservations ( string universityID )
+        {
+     SqlParameter[] parameters = new SqlParameter[]
+    {
+    new SqlParameter("@UniversityID", universityID)
+            };
+
+  return dbMan.ExecuteReader ( "sp_GetMyReservations", parameters );
+  }
+
+        public DataTable GetAvailableEquipment ( )
+            {
+        return dbMan.ExecuteReader ( "sp_GetAvailableEquipment", null );
+        }
+
+      public DataTable SearchEquipment ( string searchTerm )
+            {
+            SqlParameter[] parameters = new SqlParameter[]
+    {
+                new SqlParameter("@SearchTerm", searchTerm)
+         };
+
+  return dbMan.ExecuteReader ( "sp_SearchEquipment", parameters );
+      }
+
+        public bool ReserveEquipment ( string universityID, int equipmentID, DateTime reservationDate )
+        {
+     SqlParameter[] parameters = new SqlParameter[]
+{
+          new SqlParameter("@UniversityID", universityID),
+    new SqlParameter("@EquipmentID", equipmentID),
+                new SqlParameter("@ReservationDate", reservationDate)
+       };
+
+         object result = dbMan.ExecuteScalar ( "sp_ReserveEquipment", parameters );
+ return result != null && Convert.ToInt32 ( result ) == 1;
+            }
+
         // Add this inside your Controller class
         public DataTable GetAllActiveReservations ( )
-            {
+  {
             return dbMan.ExecuteReader ( "sp_GetAllActiveReservations", null );
-            }
-        // ... existing code ...
-        // Add this to Controller.cs
-
+          }
         // FEATURE 6: Maintenance Management
         public DataTable GetDamagedItems ( )
             {
