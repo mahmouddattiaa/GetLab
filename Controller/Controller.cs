@@ -58,6 +58,22 @@ namespace GetLab.Controller
         }
 
 
+        public DataTable getRoomName()
+        {
+            return dbMan.ExecuteReader("sp_GetRoomNameByType", null);
+        }
+
+        public DataTable GetAvailableEquipmentByLab(string locationID)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@LocationID", locationID)
+            };
+
+            return dbMan.ExecuteReader("sp_GetAvailableEquipmentByLab", parameters);
+        }
+
+
         // FEATURE 2: Search for specific items (by name)
         public DataTable SearchEquipment ( string keyword )
             {

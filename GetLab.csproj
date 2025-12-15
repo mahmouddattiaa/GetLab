@@ -59,6 +59,12 @@
     <Compile Include="Forms\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Professor\teacherReservation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Professor\teacherReservation.Designer.cs">
+      <DependentUpon>teacherReservation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Professor\viewEquipments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     <EmbeddedResource Include="Forms\Authentication\Create.resx">
       <DependentUpon>Create.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Professor\teacherReservation.resx">
+      <DependentUpon>teacherReservation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Professor\viewEquipments.resx">
       <DependentUpon>viewEquipments.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,6 +206,8 @@
     <Content Include="DatabaseScripts\02_Stored_Procedures.sql" />
     <Content Include="DatabaseScripts\03_Sample_Data.sql" />
     <Content Include="DatabaseScripts\project DB.sql" />
+    <None Include="Resources\home.png" />
+    <None Include="Resources\reserve.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -158,6 +158,34 @@ BEGIN
     WHERE E.CurrentStatus = @Status
 END
 
+CREATE PROCEDURE sp_GetRoomNameByType
+AS
+BEGIN
+    SELECT RoomName , LocationID
+    FROM Locations 
+    WHERE RoomType = 'Lab'
+END
+
+CREATE PROCEDURE sp_GetAvailableEquipmentByLab
+    @LocationID NVARCHAR(50)
+AS
+BEGIN
+    SELECT 
+        E.EquipmentID, 
+        E.EquipmentName, 
+        E.ModelName, 
+        E.SerialNumber,
+        E.CurrentStatus,
+        L.RoomName
+    FROM Equipment E
+    JOIN Locations L ON E.LocationID = L.LocationID
+    WHERE L.LocationID = @LocationID
+    AND E.CurrentStatus = 'Available'
+END
+
+
+
+
 -- SP: Search Equipment
 CREATE PROCEDURE sp_SearchEquipment
     @Keyword NVARCHAR(50)
@@ -296,7 +324,10 @@ INSERT INTO Users (UniversityID, FullName, Email, PasswordHash, UserRole, Major,
 ('ADM001', 'Mahmoud Attia (Admin)', 'admin@getlab.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Admin', NULL, NULL),
 ('4230175', 'Mahmoud Attia (Student)', 'mahmoud@student.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Student', 'Computer Eng', NULL),
 ('1230256', 'Mariam Raafat', 'mariam@student.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Student', 'Computer Eng', NULL),
-('PROF01', 'Dr. Hisham', 'hisham@cairo.edu', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Teacher', NULL, 'Computer Eng');
+('PROF01', 'Dr. Hisham', 'hisham@cairo.edu', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Teacher', NULL, 'Computer Eng'),
+('ahmed_admin', 'Ahmed Bahgat (admin)', 'adminahmed@getlab.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Admin', NULL, NULL),
+('ahmed_student', 'Ahmed Bahgat (student)', 'adminahmed@getlab.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Student', NULL, NULL),
+('ahmed_teacher', 'Ahmed Bahgat (teacher)', 'adminahmed@getlab.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Teacher', NULL, NULL);
 
 INSERT INTO Suppliers (SupplierName, ContactInfo, Address) VALUES 
 ('Tektronix Inc', 'contact@tek.com', 'USA'),
@@ -329,8 +360,6 @@ INSERT INTO Equipment (EquipmentName, ModelName, SerialNumber, SupplierID, Locat
 ('DC Power Supply', 'KA3005D', 'PS-200', 2, 1, 'Available'),
 ('DC Power Supply', 'KA3005D', 'PS-201', 2, 1, 'Available'),
 ('DC Power Supply', 'KA3005D', 'PS-202', 2, 1, 'Maintenance');
-GO
 
 
-INSERT INTO Users (UniversityID, FullName, Email, PasswordHash, UserRole, Major, Department) VALUES 
-('ahmed_teacher', 'Ahmed Bahgat (teacher)', 'adminahmed@getlab.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Teacher', NULL, NULL);
+

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(viewEquipments));
             this.viewEquipmentProfGrid = new System.Windows.Forms.DataGridView();
             this.showAvailEquipments = new System.Windows.Forms.Button();
             this.showReservedEquipments = new System.Windows.Forms.Button();
@@ -67,9 +66,9 @@
             // showReservedEquipments
             // 
             this.showReservedEquipments.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showReservedEquipments.Location = new System.Drawing.Point(390, 158);
+            this.showReservedEquipments.Location = new System.Drawing.Point(390, 156);
             this.showReservedEquipments.Name = "showReservedEquipments";
-            this.showReservedEquipments.Size = new System.Drawing.Size(326, 56);
+            this.showReservedEquipments.Size = new System.Drawing.Size(326, 60);
             this.showReservedEquipments.TabIndex = 2;
             this.showReservedEquipments.Text = "Show Reserved Equipments";
             this.showReservedEquipments.UseVisualStyleBackColor = true;
@@ -109,7 +108,7 @@
             // showBorrowedEquipment
             // 
             this.showBorrowedEquipment.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showBorrowedEquipment.Location = new System.Drawing.Point(744, 156);
+            this.showBorrowedEquipment.Location = new System.Drawing.Point(744, 160);
             this.showBorrowedEquipment.Name = "showBorrowedEquipment";
             this.showBorrowedEquipment.Size = new System.Drawing.Size(326, 56);
             this.showBorrowedEquipment.TabIndex = 7;
@@ -127,23 +126,31 @@
             this.homeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.homeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.homeBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.homeBtn.Image = ((System.Drawing.Image)(resources.GetObject("homeBtn.Image")));
-            this.homeBtn.Location = new System.Drawing.Point(12, 8);
+            this.homeBtn.Image = global::GetLab.Properties.Resources.home1;
+            this.homeBtn.Location = new System.Drawing.Point(-1, 3);
             this.homeBtn.Name = "homeBtn";
-            this.homeBtn.Size = new System.Drawing.Size(86, 76);
+            this.homeBtn.Size = new System.Drawing.Size(119, 87);
             this.homeBtn.TabIndex = 8;
             this.homeBtn.UseVisualStyleBackColor = false;
             this.homeBtn.Click += new System.EventHandler(this.homeBtn_Click);
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(140, 16);
+            this.button1.ForeColor = System.Drawing.Color.Transparent;
+            this.button1.Image = global::GetLab.Properties.Resources.reserve;
+            this.button1.Location = new System.Drawing.Point(98, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 60);
+            this.button1.Size = new System.Drawing.Size(119, 87);
             this.button1.TabIndex = 9;
-            this.button1.Text = "Reserve";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // viewEquipments
             // 

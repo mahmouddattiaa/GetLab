@@ -24,7 +24,9 @@ namespace GetLab.Forms.Professor
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            teacherReservation teacherReservation = new teacherReservation(userID);
+            teacherReservation.Show();
         }
 
         private void Welcome_Professor_Load ( object sender, EventArgs e )
@@ -35,7 +37,7 @@ namespace GetLab.Forms.Professor
         private void button4_Click(object sender, EventArgs e)
         {
             this.Close();
-            viewEquipments viewEquipments = new viewEquipments(userID, role);
+            viewEquipments viewEquipments = new viewEquipments(userID);
             viewEquipments.Show();
 
         }

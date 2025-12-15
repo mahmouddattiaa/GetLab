@@ -16,15 +16,13 @@ namespace GetLab.Forms.Professor
     {
         ControllerClass controller;
         string currentUserID;
-        string userRole;
         string status = "Available";
 
-        public viewEquipments(string userID, string role)
+        public viewEquipments(string userID)
         {
             InitializeComponent();
             controller = new ControllerClass();
             currentUserID = userID;
-            userRole = role;
         }
 
         private void viewEquipments_Load(object sender, EventArgs e)
@@ -115,8 +113,18 @@ namespace GetLab.Forms.Professor
         private void homeBtn_Click(object sender, EventArgs e)
         {
             this.Close();
-            Welcome_Professor welcomeProf = new Welcome_Professor(currentUserID, userRole);
+            Welcome_Professor welcomeProf = new Welcome_Professor(currentUserID, "Professor");
             welcomeProf.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            teacherReservation teacherReservation = new teacherReservation(currentUserID);
+            teacherReservation.Show();
+        }
+
+
+
     }
 }
