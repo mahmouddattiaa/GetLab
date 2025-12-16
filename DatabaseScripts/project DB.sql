@@ -273,6 +273,91 @@ BEGIN
 END
 GO
 
+USE GetLabDB;
+GO
+
+-- SP 19: Add a New Location
+-- This respects your database constraint: RoomType must be 'Lab' or 'Storage'
+CREATE PROCEDURE sp_AddLocation
+    @RoomName NVARCHAR(50),
+    @RoomType NVARCHAR(20), 
+    @Capacity INT
+AS
+BEGIN
+    -- 1. Check for duplicates (Two rooms can't have the exact same name)
+    IF EXISTS (SELECT 1 FROM Locations WHERE RoomName = @RoomName)
+    BEGIN
+        SELECT 0 AS Result; -- Fail (Duplicate Name)
+    END
+    ELSE
+    BEGIN
+        -- 2. Insert the new room
+        INSERT INTO Locations (RoomName, RoomType, Capacity)
+        VALUES (@RoomName, @RoomType, @Capacity);
+        
+        SELECT 1 AS Result; -- Success
+    END
+END
+GO
+
+-- SP 20: Get All Locations (To show in the grid)
+CREATE PROCEDURE sp_GetLocationsList
+AS
+BEGIN
+    SELECT LocationID, RoomName, RoomType, Capacity 
+    FROM Locations
+    ORDER BY RoomType, RoomName; -- Group by type, then name
+END
+GO
+USE GetLabDB;
+GO
+
+-- SP 21: Get All Equipment for Search Dropdown
+CREATE PROCEDURE sp_GetAllEquipmentList
+AS
+BEGIN
+    SELECT 
+        EquipmentID, 
+        -- Combine Name, Model, and ID into one string for easy searching
+        EquipmentName + ' - ' + ISNULL(ModelName, '') + ' (ID: ' + CAST(EquipmentID AS NVARCHAR(20)) + ')' AS DisplayName
+    FROM Equipment
+    ORDER BY EquipmentName;
+END
+GO
+USE GetLabDB;
+GO
+
+-- SP 23: Get Available LAB Equipment (Hourly / In-Lab)
+CREATE PROCEDURE sp_GetAvailableLabEquipment
+AS
+BEGIN
+    SELECT 
+        E.EquipmentID, 
+        E.EquipmentName, 
+        E.ModelName, 
+        L.RoomName 
+    FROM Equipment E
+    JOIN Locations L ON E.LocationID = L.LocationID
+    WHERE E.CurrentStatus = 'Available' 
+      AND L.RoomType = 'Lab'; -- ONLY Labs
+END
+GO
+
+-- SP 24: Get Available STORAGE Equipment (Daily / Take-Home)
+CREATE PROCEDURE sp_GetAvailableStorageEquipment
+AS
+BEGIN
+    SELECT 
+        E.EquipmentID, 
+        E.EquipmentName, 
+        E.ModelName, 
+        L.RoomName 
+    FROM Equipment E
+    JOIN Locations L ON E.LocationID = L.LocationID
+    WHERE E.CurrentStatus = 'Available' 
+      AND L.RoomType = 'Storage'; -- ONLY Storage
+END
+GO
 -- =============================================
 -- 4. SAMPLE DATA
 -- =============================================

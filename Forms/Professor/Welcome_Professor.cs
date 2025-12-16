@@ -32,7 +32,7 @@ namespace GetLab.Forms.Professor
 
         private void btnReport_Click ( object sender, EventArgs e )
             {
-            submitreport reportForm = new submitreport ( this.loggedInUniID );
+            submitreport reportForm = new submitreport ( this.loggedInUniID,false );
             reportForm.Show ( );
             }
         }

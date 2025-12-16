@@ -56,6 +56,12 @@
     <Compile Include="Forms\Assistant\AddEquipmentForm.Designer.cs">
       <DependentUpon>AddEquipmentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Assistant\ManageLocationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Assistant\ManageLocationsForm.Designer.cs">
+      <DependentUpon>ManageLocationsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Assistant\MaintenanceForm.resx">
       <DependentUpon>MaintenanceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assistant\ManageLocationsForm.resx">
+      <DependentUpon>ManageLocationsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>

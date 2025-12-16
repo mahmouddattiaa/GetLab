@@ -6,13 +6,11 @@ using ControllerClass = GetLab.Controller.Controller;
 
 namespace GetLab.Forms.Student
     {
-    // 1. Inherit from standard 'Form', not 'BaseForm'
     public partial class studentsreservation : Form
         {
         private ControllerClass controller;
         private string loggedInUserID;
 
-        // Constructor: Accepts the ID passed from Welcome Screen
         public studentsreservation ( string userID )
             {
             InitializeComponent ( );
@@ -20,76 +18,121 @@ namespace GetLab.Forms.Student
             loggedInUserID = userID;
             }
 
-        // Load: Show available equipment
         private void studentsreservation_Load ( object sender, EventArgs e )
             {
-            try
-                {
-                DataTable dt = controller.GetAvailableEquipment ( );
-                dataGridView1.DataSource = dt;
+            // Default: Load Lab Equipment
+            rbLab.Checked = true;
+            LoadData ( );
 
-                // Standard Grid Formatting
-                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                }
-            catch ( Exception ex )
-                {
-                MessageBox.Show ( "Error loading equipment: " + ex.Message );
-                }
+            // Set DatePicker format to show Time for Lab mode
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
             }
 
-        // Search: Filter the list
-        private void txtSearch_TextChanged ( object sender, EventArgs e )
+        // Helper to load correct data based on selection
+        private void LoadData ( )
             {
-            DataTable dt = controller.SearchEquipment ( txtSearch.Text );
+            DataTable dt;
+            if ( rbLab.Checked )
+                {
+                dt = controller.GetAvailableLabEquipment ( );
+                // Hint for user
+                dateTimePicker1.CustomFormat = "HH:mm"; // Show only time for today
+                }
+            else
+                {
+                dt = controller.GetAvailableStorageEquipment ( );
+                // Hint for user
+                dateTimePicker1.CustomFormat = "dd/MM/yyyy"; // Show full date
+                }
+
             dataGridView1.DataSource = dt;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             }
 
-        // Reserve Button
+        // EVENT: Radio Button Changed (Switching Modes)
+        private void rbLab_CheckedChanged ( object sender, EventArgs e )
+            {
+            LoadData ( );
+            }
+
+        private void rbHome_CheckedChanged ( object sender, EventArgs e )
+            {
+            LoadData ( );
+            }
+
+        // EVENT: Reserve Button
         private void reserveBtn_Click ( object sender, EventArgs e )
             {
-            // A. Validation: Selection
+            // 1. Selection Validation
             if ( dataGridView1.SelectedRows.Count == 0 )
                 {
-                MessageBox.Show ( "Please select an item from the list first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning );
+                MessageBox.Show ( "Please select an item." );
                 return;
                 }
 
-            // B. Validation: Date
-            if ( dateTimePicker1.Value <= DateTime.Now )
-                {
-                MessageBox.Show ( "Return date must be in the future.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning );
-                return;
-                }
-
-            // C. Get Equipment ID
-            // Note: Ensure your Grid actually has a column named "EquipmentID"
+            DateTime selectedDate = dateTimePicker1.Value;
             int equipmentID = Convert.ToInt32 ( dataGridView1.SelectedRows[0].Cells["EquipmentID"].Value );
-            string equipmentName = dataGridView1.SelectedRows[0].Cells["EquipmentName"].Value.ToString ( );
 
-            // D. Confirmation Dialog (Standard C#)
-            DialogResult result = MessageBox.Show ( $"Do you want to reserve {equipmentName}?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question );
-
-            if ( result == DialogResult.Yes )
+            // 2. LOGIC VALIDATION (The Rules)
+            if ( rbLab.Checked )
                 {
-                // E. Call Controller
-                bool isSuccess = controller.ReserveEquipment ( loggedInUserID, equipmentID, dateTimePicker1.Value );
-
-                if ( isSuccess )
+                // RULE: Must be TODAY
+                if ( selectedDate.Date != DateTime.Now.Date )
                     {
-                    MessageBox.Show ( "Reservation successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information );
+                    MessageBox.Show ( "Lab reservations must be for TODAY only." );
+                    return;
+                    }
 
-                    // Refresh the grid
-                    dataGridView1.DataSource = controller.GetAvailableEquipment ( );
-                    }
-                else
+                // RULE: Must be before 7 PM (19:00)
+                if ( selectedDate.Hour >= 19 )
                     {
-                    MessageBox.Show ( "Reservation failed. The item might be taken.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                    MessageBox.Show ( "The Lab closes at 7:00 PM. Please select an earlier time." );
+                    return;
                     }
+
+                // RULE: Must be in the future (can't reserve for 2 hours ago)
+                if ( selectedDate < DateTime.Now )
+                    {
+                    MessageBox.Show ( "Time must be in the future." );
+                    return;
+                    }
+                }
+            else // rbHome.Checked
+                {
+                // RULE: Must be in the future
+                if ( selectedDate.Date <= DateTime.Now.Date )
+                    {
+                    MessageBox.Show ( "Take-home borrowing must be for at least one day (Tomorrow or later)." );
+                    return;
+                    }
+                }
+
+            // 3. Execute
+            bool success = controller.ReserveEquipment ( loggedInUserID, equipmentID, selectedDate );
+
+            if ( success )
+                {
+                MessageBox.Show ( "Reservation Successful!" );
+                LoadData ( ); // Refresh grid
+                }
+            else
+                {
+                MessageBox.Show ( "Reservation Failed. Item might be taken." );
                 }
             }
 
-        // Clean up connection
+        // Search Logic (Works for both lists)
+        private void txtSearch_TextChanged ( object sender, EventArgs e )
+            {
+            // Note: If you want strict searching on the filtered list, 
+            // it's better to filter the DataTable directly in C# here.
+            // But for now, calling the DB search is okay, though it searches ALL items.
+            // A quick fix for the UI:
+            ( dataGridView1.DataSource as DataTable ).DefaultView.RowFilter = $"EquipmentName LIKE '%{txtSearch.Text}%'";
+            }
+
         private void studentsreservation_FormClosing ( object sender, FormClosingEventArgs e )
             {
             controller.TerminateConnection ( );

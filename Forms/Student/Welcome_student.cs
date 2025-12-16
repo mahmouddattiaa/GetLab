@@ -40,7 +40,7 @@ namespace GetLab.Forms.Student
 
         private void btnReport_Click ( object sender, EventArgs e )
             {
-            submitreport reportForm = new submitreport ( this.loggedInUserID );
+            submitreport reportForm = new submitreport ( this.loggedInUserID , false );
             reportForm.Show ( );
             }
 

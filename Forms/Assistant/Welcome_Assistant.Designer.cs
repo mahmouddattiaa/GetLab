@@ -30,9 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnRoomManagement = new System.Windows.Forms.Button();
             this.btnReturn = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnReport = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnMaintenance = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -61,17 +61,18 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnRoomManagement
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button2.Location = new System.Drawing.Point(343, 320);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(602, 76);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Room / Storage Management";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnRoomManagement.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRoomManagement.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnRoomManagement.Location = new System.Drawing.Point(343, 320);
+            this.btnRoomManagement.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRoomManagement.Name = "btnRoomManagement";
+            this.btnRoomManagement.Size = new System.Drawing.Size(602, 76);
+            this.btnRoomManagement.TabIndex = 13;
+            this.btnRoomManagement.Text = "Room / Storage Management";
+            this.btnRoomManagement.UseVisualStyleBackColor = true;
+            this.btnRoomManagement.Click += new System.EventHandler(this.btnRoomManagement_Click);
             // 
             // btnReturn
             // 
@@ -86,17 +87,18 @@
             this.btnReturn.UseVisualStyleBackColor = true;
             this.btnReturn.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // btnReport
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button4.Location = new System.Drawing.Point(343, 488);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(602, 76);
-            this.button4.TabIndex = 15;
-            this.button4.Text = "Reports";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnReport.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReport.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnReport.Location = new System.Drawing.Point(343, 488);
+            this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(602, 76);
+            this.btnReport.TabIndex = 15;
+            this.btnReport.Text = "Reports";
+            this.btnReport.UseVisualStyleBackColor = true;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // btnLogout
             // 
@@ -132,9 +134,9 @@
             this.ClientSize = new System.Drawing.Size(1280, 661);
             this.Controls.Add(this.btnMaintenance);
             this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnReport);
             this.Controls.Add(this.btnReturn);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnRoomManagement);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -150,9 +152,9 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnRoomManagement;
         private System.Windows.Forms.Button btnReturn;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnMaintenance;
         }

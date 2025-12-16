@@ -102,27 +102,34 @@ namespace GetLab.Controller
         return dbMan.ExecuteReader ( "sp_GetAvailableEquipment", null );
         }
 
-      public DataTable SearchEquipment ( string searchTerm )
+        // FEATURE 2: Search for specific items (by name)
+        public DataTable SearchEquipment ( string keyword )
+            {
+            // 1. Create the parameter holding the text from the box
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@Keyword", keyword)
+            };
+
+            // 2. Send the procedure name AND the parameters
+            // (The error happened because 'parameters' was likely null here)
+            return dbMan.ExecuteReader ( "sp_SearchEquipment", parameters );
+            }
+
+        // FEATURE 3: Reserve an item
+        public bool ReserveEquipment ( string universityID, int equipmentID, DateTime dueDate )
             {
             SqlParameter[] parameters = new SqlParameter[]
-    {
-                new SqlParameter("@SearchTerm", searchTerm)
-         };
+            {
+        new SqlParameter("@UniversityID", universityID),
+        new SqlParameter("@EquipmentID", equipmentID),
+        
+        new SqlParameter("@DueDate", dueDate)
+                // -----------------------------------------------------
+            };
 
-  return dbMan.ExecuteReader ( "sp_SearchEquipment", parameters );
-      }
-
-        public bool ReserveEquipment ( string universityID, int equipmentID, DateTime reservationDate )
-        {
-     SqlParameter[] parameters = new SqlParameter[]
-{
-          new SqlParameter("@UniversityID", universityID),
-    new SqlParameter("@EquipmentID", equipmentID),
-                new SqlParameter("@ReservationDate", reservationDate)
-       };
-
-         object result = dbMan.ExecuteScalar ( "sp_ReserveEquipment", parameters );
- return result != null && Convert.ToInt32 ( result ) == 1;
+            object result = dbMan.ExecuteScalar ( "sp_ReserveEquipment", parameters );
+            return result != null && Convert.ToInt32 ( result ) == 1;
             }
 
         // Add this inside your Controller class
@@ -162,6 +169,40 @@ namespace GetLab.Controller
 
             object result = dbMan.ExecuteScalar ( "sp_CreateMaintenanceReport", parameters );
             return result != null && Convert.ToInt32 ( result ) == 1;
+            }
+        public bool AddLocation ( string name, string type, int capacity )
+            {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@RoomName", name),
+        new SqlParameter("@RoomType", type),
+        new SqlParameter("@Capacity", capacity)
+            };
+
+            object result = dbMan.ExecuteScalar ( "sp_AddLocation", parameters );
+            return result != null && Convert.ToInt32 ( result ) == 1;
+            }
+
+        // FEATURE: Get List of Rooms
+        public DataTable GetLocationsList ( )
+            {
+            return dbMan.ExecuteReader ( "sp_GetLocationsList", null );
+            }
+        // Add to Controller.cs
+        public DataTable GetAllEquipmentList ( )
+            {
+            return dbMan.ExecuteReader ( "sp_GetAllEquipmentList", null );
+            }
+        // Add to Controller.cs
+
+        public DataTable GetAvailableLabEquipment ( )
+            {
+            return dbMan.ExecuteReader ( "sp_GetAvailableLabEquipment", null );
+            }
+
+        public DataTable GetAvailableStorageEquipment ( )
+            {
+            return dbMan.ExecuteReader ( "sp_GetAvailableStorageEquipment", null );
             }
         public void TerminateConnection ( )
             {
