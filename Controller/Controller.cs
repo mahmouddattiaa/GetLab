@@ -53,7 +53,7 @@ namespace GetLab.Controller
  };
 
         object result = dbMan.ExecuteScalar ( "sp_ReturnEquipment", parameters );
-      return result != null && Convert.ToInt32 ( result ) == 1;
+            return result != null && Convert.ToInt32 ( result ) == 1;
           }
 
         // Overload for ReturnEquipment with condition parameter
@@ -79,6 +79,24 @@ namespace GetLab.Controller
   return dbMan.ExecuteReader ( "sp_GetMyReservations", parameters );
   }
 
+        // Add these 3 methods to Controller.cs
+
+        public bool AddEquipment ( string name, string model, string serial, int supplierID, int locationID )
+            {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@Name", name),
+        new SqlParameter("@Model", model),
+        new SqlParameter("@Serial", serial),
+        new SqlParameter("@SupplierID", supplierID),
+        new SqlParameter("@LocationID", locationID)
+            };
+            object result = dbMan.ExecuteScalar ( "sp_AddEquipment", parameters );
+            return result != null && Convert.ToInt32 ( result ) == 1;
+            }
+
+        public DataTable GetAllSuppliers ( ) { return dbMan.ExecuteReader ( "sp_GetAllSuppliers", null ); }
+        public DataTable GetAllLocations ( ) { return dbMan.ExecuteReader ( "sp_GetAllLocations", null ); }
         public DataTable GetAvailableEquipment ( )
             {
         return dbMan.ExecuteReader ( "sp_GetAvailableEquipment", null );

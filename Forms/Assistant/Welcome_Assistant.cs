@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GetLab.Forms.Authentication;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,6 +33,26 @@ namespace GetLab.Forms.Assistant
             {
             MaintenanceForm maintenanceForm = new MaintenanceForm ( );
             maintenanceForm.Show ( );
+            }
+
+        private void button1_Click ( object sender, EventArgs e )
+            {
+            AddEquipmentForm addEquipmentForm = new AddEquipmentForm ( );
+            addEquipmentForm.Show ( );
+            }
+
+        private void btnLogout_Click ( object sender, EventArgs e )
+            {
+            // 1. Close the connection (Good practice)
+            // controller.TerminateConnection(); // If you have a controller instance here
+
+            // 2. Open Login Form
+            // Assuming your login form is named 'LoginForm' or 'login'
+            login loginForm = new login ( );
+            loginForm.Show ( );
+
+            // 3. Close this dashboard
+            this.Close ( );
             }
         }
 }

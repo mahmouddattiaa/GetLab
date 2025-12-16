@@ -353,3 +353,88 @@ GO
 
 PRINT 'All stored procedures created successfully!';
 PRINT '';
+
+-------------------------------------------------------------------------------------------------------
+--return equipment procedure 
+USE GetLabDB;
+GO
+
+-- Check if it exists, drop it if so
+IF OBJECT_ID('sp_ReturnEquipmentWithCondition', 'P') IS NOT NULL
+    DROP PROCEDURE sp_ReturnEquipmentWithCondition;
+GO
+
+-- Create the procedure with the name your C# code expects
+CREATE PROCEDURE sp_ReturnEquipmentWithCondition
+    @EquipmentID INT,
+    @Condition NVARCHAR(20) -- 'Good' or 'Damaged'
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- 1. Find the ACTIVE reservation for this equipment
+    DECLARE @ResID INT;
+    SELECT TOP 1 @ResID = ReservationID 
+    FROM EquipmentReservations 
+    WHERE EquipmentID = @EquipmentID AND Status = 'Active';
+
+    -- 2. If no active reservation found, return 0 (Fail)
+    IF @ResID IS NULL
+    BEGIN
+        SELECT 0 AS Result; 
+        RETURN;
+    END
+
+    -- 3. Close the Reservation (Mark as Completed)
+    UPDATE EquipmentReservations 
+    SET ReturnDate = GETDATE(), 
+        Status = 'Completed' 
+    WHERE ReservationID = @ResID;
+
+    -- 4. Update the Equipment Status based on Condition
+    IF @Condition = 'Damaged'
+    BEGIN
+        UPDATE Equipment SET CurrentStatus = 'Maintenance' WHERE EquipmentID = @EquipmentID;
+    END
+    ELSE
+    BEGIN
+        UPDATE Equipment SET CurrentStatus = 'Available' WHERE EquipmentID = @EquipmentID;
+    END
+
+    -- 5. Return 1 (Success)
+    SELECT 1 AS Result;
+END
+GO
+----------------------------------------------------------------------------------------
+USE GetLabDB;
+GO
+
+-- SP 17: Add New Equipment
+CREATE PROCEDURE sp_AddEquipment
+    @Name NVARCHAR(100),
+    @Model NVARCHAR(100),
+    @Serial NVARCHAR(50),
+    @SupplierID INT,
+    @LocationID INT
+AS
+BEGIN
+    -- Check if Serial Number already exists (Must be unique)
+    IF EXISTS (SELECT 1 FROM Equipment WHERE SerialNumber = @Serial)
+    BEGIN
+        SELECT 0 AS Result; -- Fail (Duplicate)
+    END
+    ELSE
+    BEGIN
+        INSERT INTO Equipment (EquipmentName, ModelName, SerialNumber, SupplierID, LocationID, CurrentStatus)
+        VALUES (@Name, @Model, @Serial, @SupplierID, @LocationID, 'Available');
+        
+        SELECT 1 AS Result; -- Success
+    END
+END
+GO
+
+-- SP 18: Get Dropdown Lists (Suppliers and Locations)
+CREATE PROCEDURE sp_GetAllSuppliers AS SELECT SupplierID, SupplierName FROM Suppliers;
+GO
+CREATE PROCEDURE sp_GetAllLocations AS SELECT LocationID, RoomName FROM Locations;
+GO

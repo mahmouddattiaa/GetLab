@@ -46,9 +46,9 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Uighur", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(421, 54);
+            this.label1.Location = new System.Drawing.Point(474, 68);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(309, 72);
+            this.label1.Size = new System.Drawing.Size(373, 85);
             this.label1.TabIndex = 0;
             this.label1.Text = "Create Account";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -59,9 +59,9 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(72, 152);
+            this.label2.Location = new System.Drawing.Point(81, 190);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(146, 48);
+            this.label2.Size = new System.Drawing.Size(176, 57);
             this.label2.TabIndex = 2;
             this.label2.Text = "Full Name";
             // 
@@ -71,9 +71,9 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(72, 316);
+            this.label3.Location = new System.Drawing.Point(81, 395);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 48);
+            this.label3.Size = new System.Drawing.Size(62, 57);
             this.label3.TabIndex = 3;
             this.label3.Text = "ID";
             // 
@@ -83,9 +83,9 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(72, 229);
+            this.label4.Location = new System.Drawing.Point(81, 286);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 48);
+            this.label4.Size = new System.Drawing.Size(110, 57);
             this.label4.TabIndex = 4;
             this.label4.Text = "Email";
             // 
@@ -95,58 +95,63 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(72, 392);
+            this.label5.Location = new System.Drawing.Point(81, 490);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(135, 48);
+            this.label5.Size = new System.Drawing.Size(163, 57);
             this.label5.TabIndex = 5;
             this.label5.Text = "Password";
             // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(80, 203);
+            this.maskedTextBox1.Location = new System.Drawing.Point(90, 254);
+            this.maskedTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(417, 22);
+            this.maskedTextBox1.Size = new System.Drawing.Size(469, 26);
             this.maskedTextBox1.TabIndex = 6;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(80, 291);
+            this.textBox1.Location = new System.Drawing.Point(90, 364);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(413, 22);
+            this.textBox1.Size = new System.Drawing.Size(464, 26);
             this.textBox1.TabIndex = 7;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(80, 367);
+            this.textBox2.Location = new System.Drawing.Point(90, 459);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(413, 22);
+            this.textBox2.Size = new System.Drawing.Size(464, 26);
             this.textBox2.TabIndex = 8;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(80, 443);
+            this.textBox3.Location = new System.Drawing.Point(90, 554);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(413, 22);
+            this.textBox3.Size = new System.Drawing.Size(464, 26);
             this.textBox3.TabIndex = 9;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Location = new System.Drawing.Point(80, 507);
+            this.button1.Location = new System.Drawing.Point(90, 634);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(162, 61);
+            this.button1.Size = new System.Drawing.Size(182, 76);
             this.button1.TabIndex = 10;
             this.button1.Text = "Sign Up";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // Create
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImage = global::GetLab.Properties.Resources.LOGOOO;
-            this.ClientSize = new System.Drawing.Size(1224, 640);
+            this.ClientSize = new System.Drawing.Size(1377, 800);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -157,6 +162,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Create";
             this.Text = "Create";
             this.ResumeLayout(false);

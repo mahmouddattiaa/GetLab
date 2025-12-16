@@ -33,7 +33,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btnReturn = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.btnMaintenance = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -59,6 +59,7 @@
             this.button1.TabIndex = 12;
             this.button1.Text = "Equipment Management";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -97,17 +98,18 @@
             this.button4.Text = "Reports";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnLogout
             // 
-            this.button5.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button5.Location = new System.Drawing.Point(343, 572);
-            this.button5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(602, 76);
-            this.button5.TabIndex = 16;
-            this.button5.Text = "Logout";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnLogout.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnLogout.Location = new System.Drawing.Point(343, 572);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(602, 76);
+            this.btnLogout.TabIndex = 16;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // btnMaintenance
             // 
@@ -129,7 +131,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1280, 661);
             this.Controls.Add(this.btnMaintenance);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.button2);
@@ -151,7 +153,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnMaintenance;
         }
 }

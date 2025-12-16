@@ -152,7 +152,7 @@ namespace GetLab.Forms.Assistant
                 }
             catch ( Exception ex )
                 {
-                MessageBox.Show ( "❌ System Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                MessageBox.Show ( "Database Error Details:\n" + ex.Message, "Debug Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
                 }
             }
         }

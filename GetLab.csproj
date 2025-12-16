@@ -50,14 +50,20 @@
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Data\DBManager.cs" />
     <Compile Include="Data\SecurityHelper.cs" />
+    <Compile Include="Forms\Assistant\AddEquipmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Assistant\AddEquipmentForm.Designer.cs">
+      <DependentUpon>AddEquipmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Assistant\ReturnItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Assistant\ReturnItemForm.Designer.cs">
       <DependentUpon>ReturnItemForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\BaseForm.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helpers\FormHelper.cs" />
     <Compile Include="Helpers\ValidationHelper.cs" />
@@ -89,9 +95,6 @@
     <Compile Include="Forms\Assistant\MaintenanceForm.Designer.cs">
       <DependentUpon>MaintenanceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Assistant\ReturnItemForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\Student\MyReservations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,11 +103,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Assistant\AddEquipmentForm.resx">
+      <DependentUpon>AddEquipmentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Assistant\MaintenanceForm.resx">
       <DependentUpon>MaintenanceForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Assistant\ReturnItemForm.resx">
-      <DependentUpon>ReturnItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
@@ -141,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Authentication\Create.resx">
       <DependentUpon>Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assistant\ReturnItemForm.resx">
+      <DependentUpon>ReturnItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Student\MyReservations.resx">
       <DependentUpon>MyReservations.cs</DependentUpon>
