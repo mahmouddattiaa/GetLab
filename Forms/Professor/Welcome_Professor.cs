@@ -41,5 +41,12 @@ namespace GetLab.Forms.Professor
             viewLabs.Show();
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            requestEquipment requestEquipment = new requestEquipment(userID);
+            requestEquipment.Show();
+        }
     }
 }

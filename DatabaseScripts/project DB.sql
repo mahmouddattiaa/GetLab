@@ -100,9 +100,29 @@ CREATE TABLE MaintenanceReports (
     CONSTRAINT FK_Report_User FOREIGN KEY (ReportedByUserID) REFERENCES Users(UserID)
 );
 
--- =============================================
--- 3. STORED PROCEDURES (The API Layer)
--- =============================================
+CREATE TABLE EquipmentRequests (
+    RequestID INT PRIMARY KEY IDENTITY(1,1),
+    UserID INT NOT NULL,
+    EquipmentCode NVARCHAR(100) NOT NULL, 
+    SupplierID INT NULL,
+    Justification NVARCHAR(500) NOT NULL,
+    Status NVARCHAR(20) DEFAULT 'Pending' CHECK (Status IN ('Pending', 'Approved', 'Denied')),
+    RequestDate DATETIME DEFAULT GETDATE(),
+    ApprovedByUserID INT NULL,
+    CONSTRAINT FK_EquipmentRequests_User FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    CONSTRAINT FK_EquipmentRequests_Supplier FOREIGN KEY (SupplierID) REFERENCES Suppliers(SupplierID),
+    CONSTRAINT FK_EquipmentRequests_Approver FOREIGN KEY (ApprovedByUserID) REFERENCES Users(UserID)
+);
+
+select * from EquipmentRequests
+CREATE TABLE RequestedItems (
+    RequestItemID INT PRIMARY KEY IDENTITY(1,1),
+    RequestID INT NOT NULL,
+    EquipmentID INT NOT NULL,
+    CONSTRAINT FK_RequestedItems_Request FOREIGN KEY (RequestID) REFERENCES EquipmentRequests(RequestID),
+    CONSTRAINT FK_RequestedItems_Equipment FOREIGN KEY (EquipmentID) REFERENCES Equipment(EquipmentID)
+);
+
 GO
 
 -- SP: Check if User Exists (Step 1 of Login)
@@ -171,6 +191,25 @@ END
 
 
 
+CREATE PROCEDURE sp_GetTeacherEquipmentRequests
+    @TeacherUniversityID NVARCHAR(20)
+AS
+BEGIN
+    SELECT 
+        er.RequestID,
+        er.EquipmentCode,
+        er.Justification,
+        er.Status,
+        er.RequestDate
+    FROM EquipmentRequests er
+    JOIN Users u ON er.UserID = u.UserID
+    WHERE u.UniversityID = @TeacherUniversityID
+END
+GO
+
+
+
+
 CREATE PROCEDURE sp_GetRoomNameByType
 AS
 BEGIN
@@ -195,6 +234,28 @@ BEGIN
     WHERE L.LocationID = @LocationID
     AND E.CurrentStatus = 'Available'
 END
+
+
+CREATE PROCEDURE sp_SubmitEquipmentRequest
+    @TeacherUniversityID NVARCHAR(20),
+    @EquipmentName NVARCHAR(100),
+    @Justification NVARCHAR(500),
+    @SupplierID INT = NULL
+AS
+BEGIN
+    DECLARE @TeacherUserID INT;
+    
+    SELECT @TeacherUserID = UserID 
+    FROM Users 
+    WHERE UniversityID = @TeacherUniversityID 
+    AND UserRole = 'Teacher';
+
+
+    INSERT INTO EquipmentRequests (UserID, EquipmentCode, Justification, SupplierID, Status, RequestDate)
+    VALUES (@TeacherUserID, @EquipmentName, @Justification, @SupplierID, 'Pending', GETDATE());
+
+END
+GO
 
 
 -- SP: Search Equipment
@@ -222,7 +283,7 @@ BEGIN
 
     IF @InternalUserID IS NULL
     BEGIN
-        SELECT 0 AS Result; -- Fail (User not found)
+        SELECT 0 AS Result;
         RETURN;
     END
 
@@ -236,7 +297,7 @@ BEGIN
     END
     ELSE
     BEGIN
-        SELECT 0 AS Result; -- Fail (Item taken)
+        SELECT 0 AS Result;
     END
 END
 GO
@@ -292,7 +353,7 @@ BEGIN
 
     IF @ResID IS NULL
     BEGIN
-        SELECT 0 AS Result; -- Fail
+        SELECT 0 AS Result;
         RETURN;
     END
 
@@ -327,9 +388,7 @@ BEGIN
 END
 GO
 
--- =============================================
--- 4. SAMPLE DATA
--- =============================================
+
 -- Password for everyone is '1234' (Hashed)
 INSERT INTO Users (UniversityID, FullName, Email, PasswordHash, UserRole, Major, Department) VALUES 
 ('ADM001', 'Mahmoud Attia (Admin)', 'admin@getlab.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Admin', NULL, NULL),

@@ -66,8 +66,9 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(535, 61);
             this.button2.TabIndex = 14;
-            this.button2.Text = "Course Management";
+            this.button2.Text = "Request Equipment";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 

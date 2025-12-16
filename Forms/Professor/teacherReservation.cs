@@ -37,7 +37,6 @@ namespace GetLab.Forms.Professor
             string selectedRoom = comboBox1.SelectedValue.ToString();
             DataTable equipment = controller.GetAvailableEquipmentByLab(selectedRoom);
             makeReserTeacherGrid.DataSource = equipment;
-            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

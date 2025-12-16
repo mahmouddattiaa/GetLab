@@ -59,6 +59,18 @@
     <Compile Include="Forms\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Professor\myRequests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Professor\myRequests.Designer.cs">
+      <DependentUpon>myRequests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Professor\requestEquipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Professor\requestEquipment.Designer.cs">
+      <DependentUpon>requestEquipment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Professor\teacherReservation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +153,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Authentication\Create.resx">
       <DependentUpon>Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Professor\myRequests.resx">
+      <DependentUpon>myRequests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Professor\requestEquipment.resx">
+      <DependentUpon>requestEquipment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Professor\teacherReservation.resx">
       <DependentUpon>teacherReservation.cs</DependentUpon>
