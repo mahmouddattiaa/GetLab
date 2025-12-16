@@ -12,13 +12,13 @@ using ControllerClass = GetLab.Controller.Controller;
 
 namespace GetLab.Forms.Professor
 {
-    public partial class viewEquipments : Form
+    public partial class viewLabs : Form
     {
         ControllerClass controller;
         string currentUserID;
         string status = "Available";
 
-        public viewEquipments(string userID)
+        public viewLabs(string userID)
         {
             InitializeComponent();
             controller = new ControllerClass();
@@ -27,14 +27,14 @@ namespace GetLab.Forms.Professor
 
         private void viewEquipments_Load(object sender, EventArgs e)
         {
-            LoadEquipmentData();
+            LoadLabs();
         }
 
-        private void LoadEquipmentData()
+        private void LoadLabs()
         {
             
                 DataTable dt;
-                dt = controller.getEquipmentUsingStatus(status);
+                dt = controller.getRoomDetails(status);
                 viewEquipmentProfGrid.DataSource = dt;
                 SetupGridView();
 
@@ -50,29 +50,22 @@ namespace GetLab.Forms.Professor
             viewEquipmentProfGrid.AllowUserToAddRows = false;
             viewEquipmentProfGrid.AllowUserToDeleteRows = false;
             viewEquipmentProfGrid.MultiSelect = false;
-
-            if (viewEquipmentProfGrid.Columns.Contains("EquipmentID"))
-            {
-                viewEquipmentProfGrid.Columns["EquipmentID"].Width = 50;
-                viewEquipmentProfGrid.Columns["EquipmentID"].HeaderText = "ID";
-            }
-
-            // Set column headers to friendly names
-            if (viewEquipmentProfGrid.Columns.Contains("EquipmentName"))
-            {
-                viewEquipmentProfGrid.Columns["EquipmentName"].HeaderText = "Equipment Name";
-            }
-            if (viewEquipmentProfGrid.Columns.Contains("ModelName"))
-                viewEquipmentProfGrid.Columns["ModelName"].HeaderText = "Model";
             if (viewEquipmentProfGrid.Columns.Contains("RoomName"))
             {
-                viewEquipmentProfGrid.Columns["RoomName"].HeaderText = "Location";
                 viewEquipmentProfGrid.Columns["RoomName"].Width = 150;
+                viewEquipmentProfGrid.Columns["RoomName"].HeaderText = "Room Name";
             }
-            if (viewEquipmentProfGrid.Columns.Contains("CurrentStatus"))
+
+            if (viewEquipmentProfGrid.Columns.Contains("LocationID"))
             {
-                viewEquipmentProfGrid.Columns["CurrentStatus"].Width = 200;
-                viewEquipmentProfGrid.Columns["CurrentStatus"].HeaderText = "Status";
+                viewEquipmentProfGrid.Columns["LocationID"].Width = 80;
+                viewEquipmentProfGrid.Columns["LocationID"].HeaderText = "Location ID";
+            }
+
+            if (viewEquipmentProfGrid.Columns.Contains("LabStatus"))
+            {
+                viewEquipmentProfGrid.Columns["LabStatus"].Width = 120;
+                viewEquipmentProfGrid.Columns["LabStatus"].HeaderText = "Lab Status";
             }
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -82,19 +75,13 @@ namespace GetLab.Forms.Professor
         private void showAvailEquipments_Click(object sender, EventArgs e)
         {
             status = "Available";
-            LoadEquipmentData(); // reload the datagrid and fill with available equipments
+            LoadLabs(); // reload the datagrid and fill with available equipments
         }
 
         private void showReservedEquipments_Click(object sender, EventArgs e)
         {
             status = "Reserved";
-            LoadEquipmentData(); // reload the datagrid and fill with reserved equipments
-        }
-
-        private void showBorrowedEquipment_Click(object sender, EventArgs e)
-        {
-            status = "Borrowed";
-            LoadEquipmentData(); // reload the datagrid and fill with borrowed equipments
+            LoadLabs(); // reload the datagrid and fill with reserved equipments
         }
 
         private void search_Click(object sender, EventArgs e)

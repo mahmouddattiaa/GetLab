@@ -34,6 +34,7 @@
             this.reserveBtn = new System.Windows.Forms.Button();
             this.timePicker = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
+            this.homeBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.makeReserTeacherGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,7 +42,7 @@
             // 
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(132, 39);
+            this.comboBox1.Location = new System.Drawing.Point(135, 67);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(301, 30);
             this.comboBox1.TabIndex = 12;
@@ -52,7 +53,7 @@
             this.combobxLbl.AutoSize = true;
             this.combobxLbl.Font = new System.Drawing.Font("Microsoft Uighur", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combobxLbl.ForeColor = System.Drawing.Color.Transparent;
-            this.combobxLbl.Location = new System.Drawing.Point(23, 36);
+            this.combobxLbl.Location = new System.Drawing.Point(23, 62);
             this.combobxLbl.Name = "combobxLbl";
             this.combobxLbl.Size = new System.Drawing.Size(69, 39);
             this.combobxLbl.TabIndex = 13;
@@ -87,7 +88,7 @@
             // 
             this.timePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.timePicker.Location = new System.Drawing.Point(697, 39);
+            this.timePicker.Location = new System.Drawing.Point(687, 69);
             this.timePicker.Name = "timePicker";
             this.timePicker.Size = new System.Drawing.Size(200, 28);
             this.timePicker.TabIndex = 18;
@@ -98,11 +99,28 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Uighur", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(510, 34);
+            this.label1.Location = new System.Drawing.Point(510, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(144, 39);
             this.label1.TabIndex = 19;
             this.label1.Text = "Return Date:";
+            // 
+            // homeBtn
+            // 
+            this.homeBtn.BackColor = System.Drawing.Color.Transparent;
+            this.homeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.homeBtn.FlatAppearance.BorderSize = 0;
+            this.homeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.homeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.homeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.homeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.homeBtn.ForeColor = System.Drawing.Color.Transparent;
+            this.homeBtn.Image = global::GetLab.Properties.Resources.home1;
+            this.homeBtn.Location = new System.Drawing.Point(12, -1);
+            this.homeBtn.Name = "homeBtn";
+            this.homeBtn.Size = new System.Drawing.Size(80, 60);
+            this.homeBtn.TabIndex = 20;
+            this.homeBtn.UseVisualStyleBackColor = false;
             // 
             // teacherReservation
             // 
@@ -110,6 +128,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(972, 532);
+            this.Controls.Add(this.homeBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.timePicker);
             this.Controls.Add(this.reserveBtn);
@@ -133,5 +152,6 @@
         private System.Windows.Forms.Button reserveBtn;
         private System.Windows.Forms.DateTimePicker timePicker;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button homeBtn;
     }
 }

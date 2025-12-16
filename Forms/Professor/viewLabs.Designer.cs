@@ -1,6 +1,6 @@
 ﻿namespace GetLab.Forms.Professor
 {
-    partial class viewEquipments
+    partial class viewLabs
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,6 @@
             this.searchBar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.search = new System.Windows.Forms.Button();
-            this.showBorrowedEquipment = new System.Windows.Forms.Button();
             this.homeBtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.viewEquipmentProfGrid)).BeginInit();
@@ -57,20 +56,20 @@
             this.showAvailEquipments.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showAvailEquipments.Location = new System.Drawing.Point(27, 156);
             this.showAvailEquipments.Name = "showAvailEquipments";
-            this.showAvailEquipments.Size = new System.Drawing.Size(326, 60);
+            this.showAvailEquipments.Size = new System.Drawing.Size(479, 60);
             this.showAvailEquipments.TabIndex = 1;
-            this.showAvailEquipments.Text = "Show Available Equipments";
+            this.showAvailEquipments.Text = "Show Available Labs";
             this.showAvailEquipments.UseVisualStyleBackColor = true;
             this.showAvailEquipments.Click += new System.EventHandler(this.showAvailEquipments_Click);
             // 
             // showReservedEquipments
             // 
             this.showReservedEquipments.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showReservedEquipments.Location = new System.Drawing.Point(390, 156);
+            this.showReservedEquipments.Location = new System.Drawing.Point(601, 156);
             this.showReservedEquipments.Name = "showReservedEquipments";
-            this.showReservedEquipments.Size = new System.Drawing.Size(326, 60);
+            this.showReservedEquipments.Size = new System.Drawing.Size(479, 60);
             this.showReservedEquipments.TabIndex = 2;
-            this.showReservedEquipments.Text = "Show Reserved Equipments";
+            this.showReservedEquipments.Text = "Show Reserved Labs";
             this.showReservedEquipments.UseVisualStyleBackColor = true;
             this.showReservedEquipments.Click += new System.EventHandler(this.showReservedEquipments_Click);
             // 
@@ -104,17 +103,6 @@
             this.search.Text = "Search";
             this.search.UseVisualStyleBackColor = true;
             this.search.Click += new System.EventHandler(this.search_Click);
-            // 
-            // showBorrowedEquipment
-            // 
-            this.showBorrowedEquipment.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showBorrowedEquipment.Location = new System.Drawing.Point(744, 160);
-            this.showBorrowedEquipment.Name = "showBorrowedEquipment";
-            this.showBorrowedEquipment.Size = new System.Drawing.Size(326, 56);
-            this.showBorrowedEquipment.TabIndex = 7;
-            this.showBorrowedEquipment.Text = "Show Borrowed Equipments";
-            this.showBorrowedEquipment.UseVisualStyleBackColor = true;
-            this.showBorrowedEquipment.Click += new System.EventHandler(this.showBorrowedEquipment_Click);
             // 
             // homeBtn
             // 
@@ -160,7 +148,6 @@
             this.ClientSize = new System.Drawing.Size(1092, 571);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.homeBtn);
-            this.Controls.Add(this.showBorrowedEquipment);
             this.Controls.Add(this.search);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.searchBar);
@@ -184,7 +171,6 @@
         private System.Windows.Forms.TextBox searchBar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button search;
-        private System.Windows.Forms.Button showBorrowedEquipment;
         private System.Windows.Forms.Button homeBtn;
         private System.Windows.Forms.Button button1;
     }

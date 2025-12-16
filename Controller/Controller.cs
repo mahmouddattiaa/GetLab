@@ -48,19 +48,21 @@ namespace GetLab.Controller
             {
             return dbMan.ExecuteReader ( "sp_GetAvailableEquipment", null );
             }
-        public DataTable getEquipmentUsingStatus(string status)
-        {
-           SqlParameter[] parameters = new SqlParameter[]
-           {
-                new SqlParameter("@Status", status)
-           };
-                return dbMan.ExecuteReader("sp_GetEquipmentByStatus", parameters);
-        }
 
 
         public DataTable getRoomName()
         {
             return dbMan.ExecuteReader("sp_GetRoomNameByType", null);
+        }
+
+        public DataTable getRoomDetails(string labStatus)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@LabStatus", labStatus)
+            };
+
+            return dbMan.ExecuteReader("sp_GetRoomNameByStatus", parameters);
         }
 
         public DataTable GetAvailableEquipmentByLab(string locationID)

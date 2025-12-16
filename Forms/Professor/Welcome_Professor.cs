@@ -37,8 +37,8 @@ namespace GetLab.Forms.Professor
         private void button4_Click(object sender, EventArgs e)
         {
             this.Close();
-            viewEquipments viewEquipments = new viewEquipments(userID);
-            viewEquipments.Show();
+            viewLabs viewLabs = new viewLabs(userID);
+            viewLabs.Show();
 
         }
     }

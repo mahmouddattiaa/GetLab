@@ -57,6 +57,7 @@ CREATE TABLE Locations (
     LocationID INT PRIMARY KEY IDENTITY(1,1),
     RoomName NVARCHAR(50) NOT NULL, 
     RoomType NVARCHAR(20) CHECK (RoomType IN ('Lab', 'Storage')),
+    LabStatus NVARCHAR(50) CHECK (LabStatus IN('Available' , 'Reserved')),
     Capacity INT DEFAULT 30
 );
 
@@ -160,11 +161,12 @@ BEGIN
 END
 
 CREATE PROCEDURE sp_GetRoomNameByType
+ @LabStatus NVARCHAR(50)
 AS
 BEGIN
     SELECT RoomName , LocationID
     FROM Locations 
-    WHERE RoomType = 'Lab'
+    WHERE RoomType = 'Lab' AND LabStatus = @LabStatus
 END
 
 CREATE PROCEDURE sp_GetAvailableEquipmentByLab
@@ -183,18 +185,6 @@ BEGIN
     WHERE L.LocationID = @LocationID
     AND E.CurrentStatus = 'Available'
 END
-
-CREATE PROCEDURE sp_GetMaxLocationID
-AS
-BEGIN
-    SELECT 
-        MAX(LocationID) 
-    FROM Locations
-END
-
-DROP PROCEDURE sp_GetMaxLocationID
-
-
 
 
 -- SP: Search Equipment
@@ -345,10 +335,10 @@ INSERT INTO Suppliers (SupplierName, ContactInfo, Address) VALUES
 ('RadioShack Egypt', 'sales@radioshack.eg', 'Cairo, Egypt'),
 ('Future Electronics', 'support@future.com', 'Alexandria, Egypt');
 
-INSERT INTO Locations (RoomName, RoomType) VALUES 
-('Lab 301 - Electronics', 'Lab'),
-('Lab 302 - Embedded', 'Lab'),
-('Storage Room A', 'Storage');
+INSERT INTO Locations (RoomName, RoomType, LabStatus) VALUES 
+('Lab 301 - Electronics', 'Lab', 'Available'),
+('Lab 302 - Embedded', 'Lab', 'Available'),
+('Storage Room A', 'Storage', 'Available');
 
 INSERT INTO Equipment (EquipmentName, ModelName, SerialNumber, SupplierID, LocationID, CurrentStatus) VALUES 
 ('Digital Oscilloscope', 'TBS1052B', 'TEK-001', 1, 1, 'Available'),
