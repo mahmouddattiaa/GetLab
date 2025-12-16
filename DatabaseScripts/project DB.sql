@@ -60,6 +60,7 @@ CREATE TABLE Locations (
     Capacity INT DEFAULT 30
 );
 
+
 -- Table: Equipment
 CREATE TABLE Equipment (
     EquipmentID INT PRIMARY KEY IDENTITY(1,1),
@@ -183,9 +184,15 @@ BEGIN
     AND E.CurrentStatus = 'Available'
 END
 
+CREATE PROCEDURE sp_GetMaxLocationID
+AS
+BEGIN
+    SELECT 
+        MAX(LocationID) 
+    FROM Locations
+END
 
-
-
+DROP PROCEDURE sp_GetMaxLocationID
 
 
 

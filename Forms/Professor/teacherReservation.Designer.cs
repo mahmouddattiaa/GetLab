@@ -31,10 +31,9 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.combobxLbl = new System.Windows.Forms.Label();
             this.makeReserTeacherGrid = new System.Windows.Forms.DataGridView();
-            this.courseLbl = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.reserveBtn = new System.Windows.Forms.Button();
             this.timePicker = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.makeReserTeacherGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,7 +41,7 @@
             // 
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(131, 12);
+            this.comboBox1.Location = new System.Drawing.Point(132, 39);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(301, 30);
             this.comboBox1.TabIndex = 12;
@@ -53,7 +52,7 @@
             this.combobxLbl.AutoSize = true;
             this.combobxLbl.Font = new System.Drawing.Font("Microsoft Uighur", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combobxLbl.ForeColor = System.Drawing.Color.Transparent;
-            this.combobxLbl.Location = new System.Drawing.Point(23, 11);
+            this.combobxLbl.Location = new System.Drawing.Point(23, 36);
             this.combobxLbl.Name = "combobxLbl";
             this.combobxLbl.Size = new System.Drawing.Size(69, 39);
             this.combobxLbl.TabIndex = 13;
@@ -71,26 +70,6 @@
             this.makeReserTeacherGrid.Size = new System.Drawing.Size(904, 283);
             this.makeReserTeacherGrid.TabIndex = 14;
             this.makeReserTeacherGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.makeReserTeacherGrid_CellContentClick_1);
-            // 
-            // courseLbl
-            // 
-            this.courseLbl.AutoSize = true;
-            this.courseLbl.Font = new System.Drawing.Font("Microsoft Uighur", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.courseLbl.ForeColor = System.Drawing.Color.Transparent;
-            this.courseLbl.Location = new System.Drawing.Point(23, 60);
-            this.courseLbl.Name = "courseLbl";
-            this.courseLbl.Size = new System.Drawing.Size(92, 39);
-            this.courseLbl.TabIndex = 15;
-            this.courseLbl.Text = "Course:";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(131, 65);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(301, 30);
-            this.comboBox2.TabIndex = 16;
             // 
             // reserveBtn
             // 
@@ -114,16 +93,26 @@
             this.timePicker.TabIndex = 18;
             this.timePicker.ValueChanged += new System.EventHandler(this.timePicker_ValueChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Uighur", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(510, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(144, 39);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Return Date:";
+            // 
             // teacherReservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(972, 532);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.timePicker);
             this.Controls.Add(this.reserveBtn);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.courseLbl);
             this.Controls.Add(this.makeReserTeacherGrid);
             this.Controls.Add(this.combobxLbl);
             this.Controls.Add(this.comboBox1);
@@ -141,9 +130,8 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label combobxLbl;
         private System.Windows.Forms.DataGridView makeReserTeacherGrid;
-        private System.Windows.Forms.Label courseLbl;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button reserveBtn;
         private System.Windows.Forms.DateTimePicker timePicker;
+        private System.Windows.Forms.Label label1;
     }
 }
