@@ -360,6 +360,3 @@ INSERT INTO Equipment (EquipmentName, ModelName, SerialNumber, SupplierID, Locat
 ('DC Power Supply', 'KA3005D', 'PS-200', 2, 1, 'Available'),
 ('DC Power Supply', 'KA3005D', 'PS-201', 2, 1, 'Available'),
 ('DC Power Supply', 'KA3005D', 'PS-202', 2, 1, 'Maintenance');
-
-
-
