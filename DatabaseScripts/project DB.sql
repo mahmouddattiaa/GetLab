@@ -186,6 +186,10 @@ END
 
 
 
+
+
+
+
 -- SP: Search Equipment
 CREATE PROCEDURE sp_SearchEquipment
     @Keyword NVARCHAR(50)

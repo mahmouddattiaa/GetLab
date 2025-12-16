@@ -34,6 +34,7 @@
             this.courseLbl = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.reserveBtn = new System.Windows.Forms.Button();
+            this.timePicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.makeReserTeacherGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,6 +102,17 @@
             this.reserveBtn.TabIndex = 17;
             this.reserveBtn.Text = "Reserve";
             this.reserveBtn.UseVisualStyleBackColor = true;
+            this.reserveBtn.Click += new System.EventHandler(this.reserveBtn_Click);
+            // 
+            // timePicker
+            // 
+            this.timePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.timePicker.Location = new System.Drawing.Point(697, 39);
+            this.timePicker.Name = "timePicker";
+            this.timePicker.Size = new System.Drawing.Size(200, 28);
+            this.timePicker.TabIndex = 18;
+            this.timePicker.ValueChanged += new System.EventHandler(this.timePicker_ValueChanged);
             // 
             // teacherReservation
             // 
@@ -108,6 +120,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(972, 532);
+            this.Controls.Add(this.timePicker);
             this.Controls.Add(this.reserveBtn);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.courseLbl);
@@ -131,5 +144,6 @@
         private System.Windows.Forms.Label courseLbl;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button reserveBtn;
+        private System.Windows.Forms.DateTimePicker timePicker;
     }
 }
