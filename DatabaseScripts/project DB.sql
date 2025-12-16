@@ -186,7 +186,7 @@ AS
 BEGIN
     SELECT RoomName , LocationID , LabStatus
     FROM Locations 
-    WHERE RoomType = 'Lab' AND LabStatus = @LabStatus
+    WHERE RoomType = 'Lab' AND LabStatus = 'Available'
 END
 
 
@@ -301,6 +301,29 @@ BEGIN
     END
 END
 GO
+
+
+
+------------------
+
+CREATE PROCEDURE sp_updateLabStatus
+@LabStatus NVARCHAR(20),
+@LocationID NVARCHAR(20)
+As
+Begin
+update Locations 
+SET LabStatus = @LabStatus where LocationID = @LocationID
+End
+
+drop PROCEDURE sp_updateLabStatus
+------------------
+
+select * from Locations
+update Locations
+set LabStatus = 'Available'
+select * from Equipment
+update Equipment
+set CurrentStatus = 'Available'
 
 -- SP: Get My Reservations (Student History)
 CREATE PROCEDURE sp_GetMyReservations

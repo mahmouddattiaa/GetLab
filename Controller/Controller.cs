@@ -56,7 +56,7 @@ namespace GetLab.Controller
             return dbMan.ExecuteReader("sp_GetRoomNameByType", null);
         }
 
-        public DataTable getRoomDetails(string labStatus)
+        public DataTable getRoomDetails(string labStatus = "Available")
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -127,6 +127,15 @@ namespace GetLab.Controller
 
 
        
+        public int updateLabStatus(string LabStatus, string LocationID)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+ {
+                new SqlParameter("@LabStatus", LabStatus),
+                new SqlParameter("@LocationID", LocationID)
+ };
+            return dbMan.ExecuteNonQuery("sp_updateLabStatus", parameters);
+        }
 
 
         // Add this to Controller.cs

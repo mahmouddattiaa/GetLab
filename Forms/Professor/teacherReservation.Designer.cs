@@ -121,6 +121,7 @@
             this.homeBtn.Size = new System.Drawing.Size(80, 60);
             this.homeBtn.TabIndex = 20;
             this.homeBtn.UseVisualStyleBackColor = false;
+            this.homeBtn.Click += new System.EventHandler(this.homeBtn_Click);
             // 
             // teacherReservation
             // 

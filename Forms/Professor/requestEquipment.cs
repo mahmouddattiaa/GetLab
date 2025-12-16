@@ -35,8 +35,8 @@ namespace GetLab.Forms.Professor
             if(dt > 0)
             {
                 MessageBox.Show("Request Submitted Successfully");
-                equipmentName = string.Empty;
-                justification = string.Empty;
+                equipmentName = " ";
+                justification = " ";
             }
         }
 

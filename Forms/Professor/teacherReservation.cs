@@ -33,10 +33,23 @@ namespace GetLab.Forms.Professor
             DataTable dt = controller.getRoomName();
             comboBox1.DataSource = dt;
             comboBox1.DisplayMember = "RoomName";
-            comboBox1.ValueMember = "LocationID";
-            string selectedRoom = comboBox1.SelectedValue.ToString();
-            DataTable equipment = controller.GetAvailableEquipmentByLab(selectedRoom);
-            makeReserTeacherGrid.DataSource = equipment;
+
+            
+
+            if (comboBox1.SelectedValue != null)
+            {
+                comboBox1.ValueMember = "LocationID";
+                string selectedRoom = comboBox1.SelectedValue?.ToString();
+                DataTable equipment =
+                    controller.GetAvailableEquipmentByLab(selectedRoom);
+
+                makeReserTeacherGrid.DataSource = equipment;
+            }
+
+
+
+
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -65,7 +78,10 @@ namespace GetLab.Forms.Professor
 
         private void reserveBtn_Click(object sender, EventArgs e)
         {
-            checkTime();
+            if (!checkTime())
+            {
+                return;
+            }
             int count = makeReserTeacherGrid.Rows.Count;
             for (int i = 0; i < count; i++)
             {
@@ -79,6 +95,7 @@ namespace GetLab.Forms.Professor
                     bool isSuccess = controller.ReserveEquipment(currentUserID, equipmentID, timePicker.Value);
                 }
             }
+            controller.updateLabStatus("Reserved", comboBox1.SelectedValue.ToString());
             teacherReservation_Load(sender, e);
         }
 
@@ -87,13 +104,24 @@ namespace GetLab.Forms.Professor
             checkTime();
         }
 
-        void checkTime()
+        bool checkTime()
         {
             if (timePicker.Value <= DateTime.Now)
             {
                 MessageBox.Show("This date was missed");
-                return;
+                return false;
             }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void homeBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Welcome_Professor welcome_Professor = new Welcome_Professor(currentUserID, "Professor");
+            welcome_Professor.Show();
         }
     }
 }
