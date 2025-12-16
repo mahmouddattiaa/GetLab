@@ -160,13 +160,23 @@ BEGIN
     WHERE E.CurrentStatus = @Status
 END
 
-CREATE PROCEDURE sp_GetRoomNameByType
+CREATE PROCEDURE sp_GetRoomNameByStatus
  @LabStatus NVARCHAR(50)
+AS
+BEGIN
+    SELECT RoomName , LocationID , LabStatus
+    FROM Locations 
+    WHERE RoomType = 'Lab' AND LabStatus = @LabStatus
+END
+
+
+
+CREATE PROCEDURE sp_GetRoomNameByType
 AS
 BEGIN
     SELECT RoomName , LocationID
     FROM Locations 
-    WHERE RoomType = 'Lab' AND LabStatus = @LabStatus
+    WHERE RoomType = 'Lab' AND LabStatus = 'Available'
 END
 
 CREATE PROCEDURE sp_GetAvailableEquipmentByLab
