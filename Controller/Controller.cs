@@ -70,6 +70,16 @@ namespace GetLab.Controller
             return result != null && Convert.ToInt32(result) == 1;
         }
 
+        public DataTable GetMostReservedEquipment ( )
+            {
+            return dbMan.ExecuteReader ( "sp_GetMostReservedEquipment", null );
+            }
+
+        public DataTable GetEquipmentStatusCount ( )
+            {
+            return dbMan.ExecuteReader ( "sp_GetEquipmentStatusCount", null );
+            }
+
         public DataTable GetMyReservations(string universityID)
         {
             SqlParameter[] parameters = new SqlParameter[]

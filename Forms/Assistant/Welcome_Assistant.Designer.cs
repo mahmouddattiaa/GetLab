@@ -36,6 +36,7 @@
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnMaintenance = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnStatistics = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -141,14 +142,28 @@
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button2.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button2.Location = new System.Drawing.Point(103, 207);
+            this.button2.Location = new System.Drawing.Point(141, 185);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(256, 177);
+            this.button2.Size = new System.Drawing.Size(256, 199);
             this.button2.TabIndex = 18;
             this.button2.Text = "Prof Requests";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnStatistics
+            // 
+            this.btnStatistics.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnStatistics.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStatistics.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnStatistics.Location = new System.Drawing.Point(141, 401);
+            this.btnStatistics.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnStatistics.Name = "btnStatistics";
+            this.btnStatistics.Size = new System.Drawing.Size(256, 199);
+            this.btnStatistics.TabIndex = 19;
+            this.btnStatistics.Text = "View Statistics";
+            this.btnStatistics.UseVisualStyleBackColor = true;
+            this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
             // 
             // Welcome_Assistant
             // 
@@ -156,6 +171,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1500, 923);
+            this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnMaintenance);
             this.Controls.Add(this.btnLogout);
@@ -185,5 +201,6 @@
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnMaintenance;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnStatistics;
         }
 }

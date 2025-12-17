@@ -124,4 +124,3 @@ ConfigurationManager.ConnectionStrings["GetLabConnection"]?.ConnectionString;
     }
   }
 }
-}

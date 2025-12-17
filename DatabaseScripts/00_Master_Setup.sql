@@ -217,33 +217,10 @@ GO
 USE GetLabDB;
 GO
 
--- SP 32: Get Most Reserved Equipment (For Bar Chart)
-CREATE OR ALTER PROCEDURE sp_GetMostReservedEquipment
-AS
-BEGIN
-    -- Count reservations for each item and take the Top 10
-    SELECT TOP 10
-        E.EquipmentName,
-        COUNT(ER.ReservationID) AS ReservationCount
-    FROM EquipmentReservations ER
-    JOIN Equipment E ON ER.EquipmentID = E.EquipmentID
-    GROUP BY E.EquipmentName
-    ORDER BY ReservationCount DESC;
-END
-GO
+-- BAR CHART PROCEDURES
+CREATE OR ALTER PROCEDURE sp_GetMostReservedEquipment AS BEGIN SELECT TOP 10 E.EquipmentName, COUNT(ER.ReservationID) AS ReservationCoun FROM EquipmentReservations ER JOIN Equipment E ON ER.EquipmentID = E.EquipmentID  GROUP BY E.EquipmentName  ORDER BY ReservationCount DESC; END GO
 
--- SP 33: Get Equipment Status Count (For Pie Chart)
-CREATE OR ALTER PROCEDURE sp_GetEquipmentStatusCount
-AS
-BEGIN
-    -- Count how many items are in each status category
-    SELECT 
-        CurrentStatus,
-        COUNT(EquipmentID) AS StatusCount
-    FROM Equipment
-    GROUP BY CurrentStatus;
-END
-GO
+CREATE OR ALTER PROCEDURE sp_GetEquipmentStatusCount AS BEGIN SELECT     CurrentStatus,  COUNT(EquipmentID) AS StatusCount   FROM Equipment GROUP BY CurrentStatus; END GO
 PRINT 'All stored procedures created successfully.';
 
 -- =============================================

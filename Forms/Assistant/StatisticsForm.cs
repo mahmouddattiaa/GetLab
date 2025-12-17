@@ -24,7 +24,7 @@ namespace GetLab.Forms.Assistant
             LoadStatusChart ( );
             }
 
-        // --- CHART 1: BAR CHART ---
+        
         private void LoadPopularityChart ( )
             {
             try
@@ -41,7 +41,7 @@ namespace GetLab.Forms.Assistant
                     ChartType = SeriesChartType.Bar // Bar Chart
                     };
 
-                // Tell the chart which columns to use
+                
                 series.XValueMember = "EquipmentName";
                 series.YValueMembers = "ReservationCount";
 

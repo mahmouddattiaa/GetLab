@@ -69,5 +69,11 @@ namespace GetLab.Forms.Assistant
             ManageRequestsForm req = new ManageRequestsForm(name);
             req.Show();
         }
-    }
+
+        private void btnStatistics_Click ( object sender, EventArgs e )
+            {
+            StatisticsForm statsForm = new StatisticsForm ( );
+            statsForm.Show ( );
+            }
+        }
 }

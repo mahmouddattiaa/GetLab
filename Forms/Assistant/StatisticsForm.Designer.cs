@@ -34,27 +34,27 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartPopularity = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartStatus = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPopularity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartStatus)).BeginInit();
             this.SuspendLayout();
             // 
-            // chart1
+            // chartPopularity
             // 
             chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            this.chartPopularity.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(2, 2);
-            this.chart1.Name = "chart1";
+            this.chartPopularity.Legends.Add(legend1);
+            this.chartPopularity.Location = new System.Drawing.Point(2, 2);
+            this.chartPopularity.Name = "chartPopularity";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(500, 445);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chartPopularity";
+            this.chartPopularity.Series.Add(series1);
+            this.chartPopularity.Size = new System.Drawing.Size(465, 566);
+            this.chartPopularity.TabIndex = 0;
+            this.chartPopularity.Text = "chartPopularity";
             // 
             // chartStatus
             // 
@@ -62,13 +62,13 @@
             this.chartStatus.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.chartStatus.Legends.Add(legend2);
-            this.chartStatus.Location = new System.Drawing.Point(501, 2);
+            this.chartStatus.Location = new System.Drawing.Point(473, 2);
             this.chartStatus.Name = "chartStatus";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chartStatus.Series.Add(series2);
-            this.chartStatus.Size = new System.Drawing.Size(548, 445);
+            this.chartStatus.Size = new System.Drawing.Size(636, 566);
             this.chartStatus.TabIndex = 1;
             this.chartStatus.Text = "chart2";
             // 
@@ -79,18 +79,18 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1121, 668);
             this.Controls.Add(this.chartStatus);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.chartPopularity);
             this.Name = "StatisticsForm";
             this.Text = "StatisticsForm";
             this.Load += new System.EventHandler(this.StatisticsForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPopularity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartStatus)).EndInit();
             this.ResumeLayout(false);
 
             }
 
         #endregion
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartPopularity;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartStatus;
         }
     }
