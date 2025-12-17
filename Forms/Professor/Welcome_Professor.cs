@@ -1,3 +1,5 @@
+using GetLab.Forms.Authentication;
+using GetLab.Forms.Student;
 using GetLab.Models;
 using System;
 using System.Collections.Generic;
@@ -44,9 +46,24 @@ namespace GetLab.Forms.Professor
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //this.Close();
             requestEquipment requestEquipment = new requestEquipment(userID);
             requestEquipment.Show();
         }
-    }
+
+        private void button1_Click ( object sender, EventArgs e )
+            {
+            submitreport reportForm = new submitreport ( this.userID, false );
+            reportForm.Show ( );
+            }
+
+        private void button5_Click ( object sender, EventArgs e )
+            {
+            login loginForm = new login ( );
+            loginForm.Show ( );
+
+            // 3. Close this dashboard
+            this.Close ( );
+            }
+        }
 }

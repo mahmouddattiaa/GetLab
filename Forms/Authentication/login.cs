@@ -93,5 +93,12 @@ if (string.IsNullOrEmpty(password))
             controller?.TerminateConnection();
   base.OnFormClosing(e);
      }
-   }
+
+        private void button2_Click ( object sender, EventArgs e )
+            {
+            Create create = new Create();
+            create.Show(this);
+            this.Close();
+            }
+        }
     }

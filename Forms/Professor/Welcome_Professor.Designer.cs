@@ -106,6 +106,7 @@
             this.button5.TabIndex = 17;
             this.button5.Text = "Logout";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button1
             // 
@@ -118,6 +119,7 @@
             this.button1.TabIndex = 19;
             this.button1.Text = "Report";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Welcome_Professor
             // 

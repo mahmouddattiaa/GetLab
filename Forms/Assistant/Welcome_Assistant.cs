@@ -71,5 +71,11 @@ namespace GetLab.Forms.Assistant
             ManageLocationsForm locForm = new ManageLocationsForm ( );
             locForm.Show ( );
         }
-    }
+
+        private void button2_Click ( object sender, EventArgs e )
+            {
+            ManageRequestsForm req = new ManageRequestsForm (name );
+            req.Show ();
+            }
+        }
 }

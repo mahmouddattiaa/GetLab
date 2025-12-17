@@ -86,11 +86,26 @@ namespace GetLab.Forms.Professor
 
         private void search_Click(object sender, EventArgs e)
         {
-            string keyword = searchBar.Text;
-            DataTable dt;
-            dt = controller.SearchEquipment(keyword);
-            viewEquipmentProfGrid.DataSource = dt;
-        }
+            string keyword = searchBar.Text.Trim ( );
+
+            // Get the DataTable currently displayed in the grid
+            DataTable dt = viewEquipmentProfGrid.DataSource as DataTable;
+
+            if ( dt != null )
+                {
+                if ( string.IsNullOrEmpty ( keyword ) )
+                    {
+                    // Show everything
+                    dt.DefaultView.RowFilter = "";
+                    }
+                else
+                    {
+                    // Filter by Room Name
+                    // Note: This assumes the column name in SQL is 'RoomName'
+                    dt.DefaultView.RowFilter = $"RoomName LIKE '%{keyword}%'";
+                    }
+                }
+            }
 
         private void searchBar_TextChanged(object sender, EventArgs e)
         {
@@ -110,8 +125,5 @@ namespace GetLab.Forms.Professor
             teacherReservation teacherReservation = new teacherReservation(currentUserID);
             teacherReservation.Show();
         }
-
-
-
-    }
+        }
 }

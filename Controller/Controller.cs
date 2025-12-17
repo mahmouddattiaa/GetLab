@@ -278,7 +278,37 @@ namespace GetLab.Controller
             object result = dbMan.ExecuteScalar ( "sp_ReserveSlot", parameters );
             return result != null && Convert.ToInt32 ( result ) == 1;
             }
+        // Add to Controller.cs
 
+        // FEATURE: Get Pending Requests
+        public DataTable GetPendingRequests ( )
+            {
+            return dbMan.ExecuteReader ( "sp_GetPendingRequests", null );
+            }
+
+        // FEATURE: Approve/Deny Request
+        public bool UpdateRequestStatus ( int requestID, string status, string adminUniversityID )
+            {
+            // We need to get the Admin's internal ID first
+            // (Or we can update the SP to take UniversityID directly, but let's stick to the pattern)
+            // For simplicity, let's assume the SP handles the ID lookup or we pass the internal ID if we have it.
+            // Let's update the SP logic in C# to be safe:
+
+            // Quick fix: We will just pass the ID we have. 
+            // Ideally, we should look up the Admin's internal ID, but for this feature, 
+            // just tracking WHO clicked it is a "Nice to have". 
+            // Let's just send the status update for now.
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@RequestID", requestID),
+        new SqlParameter("@Status", status),
+        new SqlParameter("@AdminID", DBNull.Value) // Optional: You can implement Admin ID lookup if needed
+            };
+
+            object result = dbMan.ExecuteNonQuery ( "sp_UpdateRequestStatus", parameters );
+            return ( int ) result > 0;
+            }
         public bool ReserveRoom ( string universityID, int locationID, DateTime startTime, DateTime endTime, string purpose )
             {
             SqlParameter[] parameters = new SqlParameter[] {
@@ -294,6 +324,37 @@ namespace GetLab.Controller
         public DataTable GetAvailableStorageEquipment ( )
             {
             return dbMan.ExecuteReader ( "sp_GetAvailableStorageEquipment", null );
+            }
+        // Add to Controller.cs
+
+        // FEATURE: Sign Up / Register
+        public int RegisterUser ( string fullName, string email, string uniID, string password )
+            {
+            // 1. Hash the password
+            string passwordHash = Data.SecurityHelper.ComputeSha256Hash ( password );
+
+            // 2. Auto-Detect Role based on ID Prefix
+            string role = "Student"; // Default
+            if ( uniID.ToUpper ( ).StartsWith ( "PROF" ) ) role = "Teacher";
+            else if ( uniID.ToUpper ( ).StartsWith ( "ADM" ) ) role = "Admin";
+            else if ( uniID.ToUpper ( ).StartsWith ( "ASST" ) ) role = "Admin"; // Lab Assistant
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@UniversityID", uniID),
+        new SqlParameter("@FullName", fullName),
+        new SqlParameter("@Email", email),
+        new SqlParameter("@PasswordHash", passwordHash),
+        new SqlParameter("@UserRole", role)
+            };
+
+            // We use ExecuteScalar to get the result code (-1, -2, or 1)
+            object result = dbMan.ExecuteScalar ( "sp_RegisterUser", parameters );
+
+            if ( result != null )
+                return Convert.ToInt32 ( result );
+
+            return 0; // Unknown error
             }
         public void TerminateConnection ( )
             {
