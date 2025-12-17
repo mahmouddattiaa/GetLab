@@ -1,4 +1,4 @@
-using GetLab.Forms.Student;
+using GetLab.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,16 +13,20 @@ namespace GetLab.Forms.Professor
 {
     public partial class Welcome_Professor : GetLab.Forms.BaseForm
     {
-        string loggedInUniID;
-        public Welcome_Professor(string userID)
+        string userID;
+        string role;
+        public Welcome_Professor(string userID , string role)
         {
             InitializeComponent();
-            loggedInUniID = userID;
+            this.userID = userID;
+            this.role = role;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            teacherReservation teacherReservation = new teacherReservation(userID);
+            teacherReservation.Show();
         }
 
         private void Welcome_Professor_Load ( object sender, EventArgs e )
@@ -30,10 +34,19 @@ namespace GetLab.Forms.Professor
 
             }
 
-        private void btnReport_Click ( object sender, EventArgs e )
-            {
-            submitreport reportForm = new submitreport ( this.loggedInUniID,false );
-            reportForm.Show ( );
-            }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            viewLabs viewLabs = new viewLabs(userID);
+            viewLabs.Show();
+
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            requestEquipment requestEquipment = new requestEquipment(userID);
+            requestEquipment.Show();
+        }
+    }
 }

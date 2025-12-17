@@ -57,8 +57,10 @@ CREATE TABLE Locations (
     LocationID INT PRIMARY KEY IDENTITY(1,1),
     RoomName NVARCHAR(50) NOT NULL, 
     RoomType NVARCHAR(20) CHECK (RoomType IN ('Lab', 'Storage')),
+    LabStatus NVARCHAR(50) CHECK (LabStatus IN('Available' , 'Reserved')),
     Capacity INT DEFAULT 30
 );
+
 
 -- Table: Equipment
 CREATE TABLE Equipment (
@@ -98,9 +100,29 @@ CREATE TABLE MaintenanceReports (
     CONSTRAINT FK_Report_User FOREIGN KEY (ReportedByUserID) REFERENCES Users(UserID)
 );
 
--- =============================================
--- 3. STORED PROCEDURES (The API Layer)
--- =============================================
+CREATE TABLE EquipmentRequests (
+    RequestID INT PRIMARY KEY IDENTITY(1,1),
+    UserID INT NOT NULL,
+    EquipmentCode NVARCHAR(100) NOT NULL, 
+    SupplierID INT NULL,
+    Justification NVARCHAR(500) NOT NULL,
+    Status NVARCHAR(20) DEFAULT 'Pending' CHECK (Status IN ('Pending', 'Approved', 'Denied')),
+    RequestDate DATETIME DEFAULT GETDATE(),
+    ApprovedByUserID INT NULL,
+    CONSTRAINT FK_EquipmentRequests_User FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    CONSTRAINT FK_EquipmentRequests_Supplier FOREIGN KEY (SupplierID) REFERENCES Suppliers(SupplierID),
+    CONSTRAINT FK_EquipmentRequests_Approver FOREIGN KEY (ApprovedByUserID) REFERENCES Users(UserID)
+);
+
+select * from EquipmentRequests
+CREATE TABLE RequestedItems (
+    RequestItemID INT PRIMARY KEY IDENTITY(1,1),
+    RequestID INT NOT NULL,
+    EquipmentID INT NOT NULL,
+    CONSTRAINT FK_RequestedItems_Request FOREIGN KEY (RequestID) REFERENCES EquipmentRequests(RequestID),
+    CONSTRAINT FK_RequestedItems_Equipment FOREIGN KEY (EquipmentID) REFERENCES Equipment(EquipmentID)
+);
+
 GO
 
 -- SP: Check if User Exists (Step 1 of Login)
@@ -143,6 +165,99 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE sp_GetEquipmentByStatus
+    @Status NVARCHAR(20)
+AS
+BEGIN
+    SELECT 
+        E.EquipmentID, 
+        E.EquipmentName, 
+        E.ModelName, 
+        L.RoomName,
+        E.CurrentStatus
+    FROM Equipment E
+    JOIN Locations L ON E.LocationID = L.LocationID
+    WHERE E.CurrentStatus = @Status
+END
+
+CREATE PROCEDURE sp_GetRoomNameByStatus
+ @LabStatus NVARCHAR(50)
+AS
+BEGIN
+    SELECT RoomName , LocationID , LabStatus
+    FROM Locations 
+    WHERE RoomType = 'Lab' AND LabStatus = @LabStatus
+END
+
+
+
+CREATE PROCEDURE sp_GetTeacherEquipmentRequests
+    @TeacherUniversityID NVARCHAR(20)
+AS
+BEGIN
+    SELECT 
+        er.RequestID,
+        er.EquipmentCode,
+        er.Justification,
+        er.Status,
+        er.RequestDate
+    FROM EquipmentRequests er
+    JOIN Users u ON er.UserID = u.UserID
+    WHERE u.UniversityID = @TeacherUniversityID
+END
+GO
+
+
+
+
+CREATE PROCEDURE sp_GetRoomNameByType
+AS
+BEGIN
+    SELECT RoomName , LocationID
+    FROM Locations 
+    WHERE RoomType = 'Lab' AND LabStatus = 'Available'
+END
+
+CREATE PROCEDURE sp_GetAvailableEquipmentByLab
+    @LocationID NVARCHAR(50)
+AS
+BEGIN
+    SELECT 
+        E.EquipmentID, 
+        E.EquipmentName, 
+        E.ModelName, 
+        E.SerialNumber,
+        E.CurrentStatus,
+        L.RoomName
+    FROM Equipment E
+    JOIN Locations L ON E.LocationID = L.LocationID
+    WHERE L.LocationID = @LocationID
+    AND E.CurrentStatus = 'Available'
+END
+
+
+CREATE PROCEDURE sp_SubmitEquipmentRequest
+    @TeacherUniversityID NVARCHAR(20),
+    @EquipmentName NVARCHAR(100),
+    @Justification NVARCHAR(500),
+    @SupplierID INT = NULL
+AS
+BEGIN
+    DECLARE @TeacherUserID INT;
+    
+    SELECT @TeacherUserID = UserID 
+    FROM Users 
+    WHERE UniversityID = @TeacherUniversityID 
+    AND UserRole = 'Teacher';
+
+
+    INSERT INTO EquipmentRequests (UserID, EquipmentCode, Justification, SupplierID, Status, RequestDate)
+    VALUES (@TeacherUserID, @EquipmentName, @Justification, @SupplierID, 'Pending', GETDATE());
+
+END
+GO
+
+
 -- SP: Search Equipment
 CREATE PROCEDURE sp_SearchEquipment
     @Keyword NVARCHAR(50)
@@ -168,7 +283,7 @@ BEGIN
 
     IF @InternalUserID IS NULL
     BEGIN
-        SELECT 0 AS Result; -- Fail (User not found)
+        SELECT 0 AS Result;
         RETURN;
     END
 
@@ -182,7 +297,7 @@ BEGIN
     END
     ELSE
     BEGIN
-        SELECT 0 AS Result; -- Fail (Item taken)
+        SELECT 0 AS Result;
     END
 END
 GO
@@ -238,7 +353,7 @@ BEGIN
 
     IF @ResID IS NULL
     BEGIN
-        SELECT 0 AS Result; -- Fail
+        SELECT 0 AS Result;
         RETURN;
     END
 
@@ -473,17 +588,20 @@ INSERT INTO Users (UniversityID, FullName, Email, PasswordHash, UserRole, Major,
 ('ADM001', 'Mahmoud Attia (Admin)', 'admin@getlab.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Admin', NULL, NULL),
 ('4230175', 'Mahmoud Attia (Student)', 'mahmoud@student.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Student', 'Computer Eng', NULL),
 ('1230256', 'Mariam Raafat', 'mariam@student.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Student', 'Computer Eng', NULL),
-('PROF01', 'Dr. Hisham', 'hisham@cairo.edu', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Teacher', NULL, 'Computer Eng');
+('PROF01', 'Dr. Hisham', 'hisham@cairo.edu', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Teacher', NULL, 'Computer Eng'),
+('ahmed_admin', 'Ahmed Bahgat (admin)', 'adminahmed@getlab.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Admin', NULL, NULL),
+('ahmed_student', 'Ahmed Bahgat (student)', 'adminahmed@getlab.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Student', NULL, NULL),
+('ahmed_teacher', 'Ahmed Bahgat (teacher)', 'adminahmed@getlab.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Teacher', NULL, NULL);
 
 INSERT INTO Suppliers (SupplierName, ContactInfo, Address) VALUES 
 ('Tektronix Inc', 'contact@tek.com', 'USA'),
 ('RadioShack Egypt', 'sales@radioshack.eg', 'Cairo, Egypt'),
 ('Future Electronics', 'support@future.com', 'Alexandria, Egypt');
 
-INSERT INTO Locations (RoomName, RoomType) VALUES 
-('Lab 301 - Electronics', 'Lab'),
-('Lab 302 - Embedded', 'Lab'),
-('Storage Room A', 'Storage');
+INSERT INTO Locations (RoomName, RoomType, LabStatus) VALUES 
+('Lab 301 - Electronics', 'Lab', 'Available'),
+('Lab 302 - Embedded', 'Lab', 'Available'),
+('Storage Room A', 'Storage', 'Available');
 
 INSERT INTO Equipment (EquipmentName, ModelName, SerialNumber, SupplierID, LocationID, CurrentStatus) VALUES 
 ('Digital Oscilloscope', 'TBS1052B', 'TEK-001', 1, 1, 'Available'),
@@ -506,4 +624,3 @@ INSERT INTO Equipment (EquipmentName, ModelName, SerialNumber, SupplierID, Locat
 ('DC Power Supply', 'KA3005D', 'PS-200', 2, 1, 'Available'),
 ('DC Power Supply', 'KA3005D', 'PS-201', 2, 1, 'Available'),
 ('DC Power Supply', 'KA3005D', 'PS-202', 2, 1, 'Maintenance');
-GO

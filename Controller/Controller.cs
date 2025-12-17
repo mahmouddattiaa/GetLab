@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace GetLab.Controller
     {
@@ -101,6 +102,52 @@ namespace GetLab.Controller
             {
         return dbMan.ExecuteReader ( "sp_GetAvailableEquipment", null );
         }
+
+
+        public DataTable getRoomName()
+        {
+            return dbMan.ExecuteReader("sp_GetRoomNameByType", null);
+        }
+
+        public DataTable getRoomDetails(string labStatus)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@LabStatus", labStatus)
+            };
+
+            return dbMan.ExecuteReader("sp_GetRoomNameByStatus", parameters);
+        }
+
+        public DataTable GetAvailableEquipmentByLab(string locationID)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@LocationID", locationID)
+            };
+
+            return dbMan.ExecuteReader("sp_GetAvailableEquipmentByLab", parameters);
+        }
+
+        public int SubmitEquipmentRequest(string teacherID, string equipmentName, string justification)
+        {
+            SqlParameter[] parameters =
+            {
+                new SqlParameter("@TeacherUniversityID", teacherID),
+                new SqlParameter("@EquipmentName", equipmentName),
+                new SqlParameter("@Justification", justification)
+            };
+
+            return dbMan.ExecuteNonQuery("sp_SubmitEquipmentRequest", parameters);
+        }
+
+
+        public DataTable GetTeacherEquipmentRequests(string teacherUniversityID)
+        {
+            SqlParameter[] parameters = { new SqlParameter("@TeacherUniversityID", teacherUniversityID) };
+            return dbMan.ExecuteReader("sp_GetTeacherEquipmentRequests", parameters);
+        }
+
 
         // FEATURE 2: Search for specific items (by name)
         public DataTable SearchEquipment ( string keyword )

@@ -24,7 +24,7 @@ namespace GetLab.Helpers
                 case "teacher": // Changed from "professor" to match your Database Role
                 case "professor":
                     // FIX: Pass the userId here too!
-                    targetForm = new Welcome_Professor ( userId );
+                    targetForm = new Welcome_Professor ( userId, role );
                     break;
 
                 case "admin":
