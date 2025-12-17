@@ -29,9 +29,9 @@ namespace GetLab.Forms.Assistant
         }
 
         private void Welcome_Assistant_Load(object sender, EventArgs e)
-            {
+        {
             label1.Left = (this.ClientSize.Width - label1.Width) / 2;
-            }
+        }
 
         private void btnMaintenance_Click(object sender, EventArgs e)
         {
@@ -46,28 +46,28 @@ namespace GetLab.Forms.Assistant
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
-            {
+        {
             login loginForm = new login();
             loginForm.Show();
             this.Close();
-            }
+        }
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            submitreport reprtForm = new submitreport(name,true);
+            submitreport reprtForm = new submitreport(name, true);
             reprtForm.Show();
         }
 
-        private void btnRoomManagement_Click ( object sender, EventArgs e )
+        private void btnRoomManagement_Click(object sender, EventArgs e)
         {
-            ManageLocationsForm locForm = new ManageLocationsForm ( );
-            locForm.Show ( );
+            ManageLocationsForm locForm = new ManageLocationsForm();
+            locForm.Show();
         }
 
-        private void button2_Click ( object sender, EventArgs e )
-            {
-            ManageRequestsForm req = new ManageRequestsForm (name );
-            req.Show ();
-            }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ManageRequestsForm req = new ManageRequestsForm(name);
+            req.Show();
         }
+    }
 }

@@ -1,5 +1,4 @@
-﻿using GetLab.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,15 +31,15 @@ namespace GetLab.Forms.Professor
 
         private void LoadLabs()
         {
-            
-                DataTable dt;
-                dt = controller.getRoomDetails(status);
-                viewEquipmentProfGrid.DataSource = dt;
-                SetupGridView();
+
+            DataTable dt;
+            dt = controller.getRoomDetails(status);
+            viewEquipmentProfGrid.DataSource = dt;
+            SetupGridView();
 
         }
-         
-        
+
+
 
         private void SetupGridView()
         {
@@ -85,23 +84,23 @@ namespace GetLab.Forms.Professor
         }
 
         private void search_Click(object sender, EventArgs e)
-            {
-            string keyword = searchBar.Text.Trim ( );
+        {
+            string keyword = searchBar.Text.Trim();
 
             DataTable dt = viewEquipmentProfGrid.DataSource as DataTable;
 
-            if ( dt != null )
+            if (dt != null)
+            {
+                if (string.IsNullOrEmpty(keyword))
                 {
-                if ( string.IsNullOrEmpty ( keyword ) )
-                    {
                     dt.DefaultView.RowFilter = "";
-                    }
+                }
                 else
-                    {
+                {
                     dt.DefaultView.RowFilter = $"RoomName LIKE '%{keyword}%'";
-                    }
                 }
             }
+        }
 
         private void searchBar_TextChanged(object sender, EventArgs e)
         {
@@ -121,5 +120,5 @@ namespace GetLab.Forms.Professor
             teacherReservation teacherReservation = new teacherReservation(currentUserID);
             teacherReservation.Show();
         }
-        }
+    }
 }

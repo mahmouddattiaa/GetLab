@@ -66,11 +66,6 @@
       <DependentUpon>ReturnItemForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\FormHelper.cs" />
-    <Compile Include="Helpers\ValidationHelper.cs" />
-    <Compile Include="Models\Lab.cs" />
-    <Compile Include="Models\Report.cs" />
-    <Compile Include="Models\Reservation.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Forms\Assistant\Welcome_Assistant.cs">
       <SubType>Form</SubType>
     </Compile>

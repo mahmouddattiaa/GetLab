@@ -5,27 +5,27 @@ using GetLab.Controller;
 using ControllerClass = GetLab.Controller.Controller;
 
 namespace GetLab.Forms.Assistant
-    {
+{
     public partial class MaintenanceForm : Form
-        {
+    {
         private ControllerClass controller;
 
-        public MaintenanceForm ( )
-            {
-            InitializeComponent ( );
-            controller = new ControllerClass ( );
-            }
+        public MaintenanceForm()
+        {
+            InitializeComponent();
+            controller = new ControllerClass();
+        }
 
-        private void MaintenanceForm_Load ( object sender, EventArgs e )
-            {
-            LoadDamagedItems ( );
-            }
+        private void MaintenanceForm_Load(object sender, EventArgs e)
+        {
+            LoadDamagedItems();
+        }
 
-        private void LoadDamagedItems ( )
-            {
+        private void LoadDamagedItems()
+        {
             try
-                {
-                DataTable dt = controller.GetDamagedItems ( );
+            {
+                DataTable dt = controller.GetDamagedItems();
                 dgvMaintenance.DataSource = dt;
 
                 // Styling
@@ -33,60 +33,60 @@ namespace GetLab.Forms.Assistant
                 dgvMaintenance.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvMaintenance.MultiSelect = false;
 
-                if ( dt.Rows.Count == 0 )
-                    {
-                    MessageBox.Show ( "Great! No equipment is currently damaged." );
-                    }
-                }
-            catch ( Exception ex )
+                if (dt.Rows.Count == 0)
                 {
-                MessageBox.Show ( "Error loading maintenance items." );
+                    MessageBox.Show("Great! No equipment is currently damaged.");
                 }
             }
-
-        private void btnFix_Click ( object sender, EventArgs e )
+            catch (Exception ex)
             {
+                MessageBox.Show("Error loading maintenance items.");
+            }
+        }
+
+        private void btnFix_Click(object sender, EventArgs e)
+        {
             // Validation: Did they select a row?
-            if ( dgvMaintenance.SelectedRows.Count == 0 )
-                {
-                MessageBox.Show ( "Please select an item to fix." );
+            if (dgvMaintenance.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select an item to fix.");
                 return;
-                }
+            }
 
             // Get ID
-            int equipID = Convert.ToInt32 ( dgvMaintenance.SelectedRows[0].Cells["EquipmentID"].Value );
-            string name = dgvMaintenance.SelectedRows[0].Cells["EquipmentName"].Value.ToString ( );
+            int equipID = Convert.ToInt32(dgvMaintenance.SelectedRows[0].Cells["EquipmentID"].Value);
+            string name = dgvMaintenance.SelectedRows[0].Cells["EquipmentName"].Value.ToString();
 
             // Confirmation
-            DialogResult result = MessageBox.Show (
+            DialogResult result = MessageBox.Show(
                 $"Are you sure '{name}' (ID: {equipID}) is fixed and ready for use?",
                 "Confirm Repair",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question );
+                MessageBoxIcon.Question);
 
-            if ( result == DialogResult.Yes )
+            if (result == DialogResult.Yes)
+            {
+                bool success = controller.FixEquipment(equipID);
+                if (success)
                 {
-                bool success = controller.FixEquipment ( equipID );
-                if ( success )
-                    {
-                    MessageBox.Show ( "Item marked as Available!" );
-                    LoadDamagedItems ( ); // Refresh the list
-                    }
+                    MessageBox.Show("Item marked as Available!");
+                    LoadDamagedItems(); // Refresh the list
+                }
                 else
-                    {
-                    MessageBox.Show ( "Error updating status." );
-                    }
+                {
+                    MessageBox.Show("Error updating status.");
                 }
             }
+        }
 
-        private void btnClose_Click ( object sender, EventArgs e )
-            {
-            this.Close ( );
-            }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
-        private void MaintenanceForm_FormClosing ( object sender, FormClosingEventArgs e )
-            {
-            controller.TerminateConnection ( );
-            }
+        private void MaintenanceForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            controller.TerminateConnection();
         }
     }
+}

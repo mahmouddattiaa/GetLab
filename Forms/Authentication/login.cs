@@ -11,88 +11,88 @@ using ControllerClass = GetLab.Controller.Controller;
 
 
 namespace GetLab.Forms.Authentication
-    {
-    public partial class login : GetLab.Forms.BaseForm
-        {
-        private ControllerClass controller;
-        public login ( )
-            {
-            InitializeComponent ( );
-            controller = new ControllerClass ( );
+{
+   public partial class login : GetLab.Forms.BaseForm
+   {
+      private ControllerClass controller;
+      public login()
+      {
+         InitializeComponent();
+         controller = new ControllerClass();
 
-            passBX.PasswordChar = '*';
+         passBX.PasswordChar = '*';
+      }
+
+      private void label1_Click(object sender, EventArgs e)
+      {
+
+      }
+
+      private void login_Load(object sender, EventArgs e)
+      {
+
+      }
+
+      private void loginBT_Click(object sender, EventArgs e)
+      {
+         try
+         {
+            string universityID = idBX.Text.Trim();
+            string password = passBX.Text;
+
+            if (string.IsNullOrEmpty(universityID))
+            {
+               ShowWarning("Please enter your University ID.", "Validation Error");
+               idBX.Focus();
+               return;
             }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+            if (string.IsNullOrEmpty(password))
+            {
+               ShowWarning("Please enter your password.", "Validation Error");
+               passBX.Focus();
+               return;
+            }
 
+            if (!controller.CheckUserExists(universityID))
+            {
+               ShowError("User ID not found.", "Login Failed");
+               return;
+            }
+
+            DataTable result = controller.ValidatePassword(universityID, password);
+
+            if (result.Rows.Count > 0)
+            {
+               string role = result.Rows[0]["UserRole"].ToString();
+               string userName = result.Rows[0]["FullName"].ToString();
+
+               ShowSuccess($"Welcome, {userName}!", "Login Successful");
+
+               GetLab.Helpers.FormHelper.NavigateBasedOnRole(role, userName, universityID, this);
+            }
+            else
+            {
+               ShowError("Invalid password.", "Login Failed");
+            }
+         }
+         catch (Exception ex)
+         {
+            HandleException(ex, "login");
+         }
+      }
+
+      protected override void OnFormClosing(FormClosingEventArgs e)
+      {
+         controller?.TerminateConnection();
+         base.OnFormClosing(e);
+      }
+
+      private void button2_Click(object sender, EventArgs e)
+      {
+         Create create = new Create();
+         create.Show(this);
+         this.Close();
+      }
    }
-
-        private void login_Load ( object sender, EventArgs e )
-            {
-
-            }
-
-        private void loginBT_Click(object sender, EventArgs e)
-            {
-            try
-                {
-                string universityID = idBX.Text.Trim();
-                string password = passBX.Text;
-
-                if (string.IsNullOrEmpty(universityID))
-                    {
-                    ShowWarning("Please enter your University ID.", "Validation Error");
-                    idBX.Focus();
-                    return;
-                    }
-
-                if (string.IsNullOrEmpty(password))
-                    {
-                    ShowWarning("Please enter your password.", "Validation Error");
-                    passBX.Focus();
-                    return;
-                    }
-
-                if (!controller.CheckUserExists(universityID))
-                    {
-                    ShowError("User ID not found.", "Login Failed");
-                    return;
-                    }
-
-                DataTable result = controller.ValidatePassword(universityID, password);
-
-                if (result.Rows.Count > 0)
-                    {
-                    string role = result.Rows[0]["UserRole"].ToString();
-                    string userName = result.Rows[0]["FullName"].ToString();
-
-                    ShowSuccess($"Welcome, {userName}!", "Login Successful");
-
-                    GetLab.Helpers.FormHelper.NavigateBasedOnRole(role, userName, universityID, this);
-                    }
-                else
-                    {
-                    ShowError("Invalid password.", "Login Failed");
-                    }
-                }
-            catch (Exception ex)
-                {
-                HandleException(ex, "login");
-                }
-            }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-            {
-            controller?.TerminateConnection();
-            base.OnFormClosing(e);
-            }
-
-        private void button2_Click ( object sender, EventArgs e )
-            {
-            Create create = new Create();
-            create.Show(this);
-            this.Close();
-            }
-        }
-    }
+}
