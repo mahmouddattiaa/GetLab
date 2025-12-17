@@ -40,7 +40,7 @@ namespace GetLab.Forms.Assistant
                 }
             catch ( Exception ex )
                 {
-                MessageBox.Show ( "Error: " + ex.Message );
+                MessageBox.Show ( "Error loading maintenance items." );
                 }
             }
 

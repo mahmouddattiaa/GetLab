@@ -22,27 +22,23 @@ namespace GetLab.Forms.Student
 
         private void submitreport_Load ( object sender, EventArgs e )
             {
-            // 1. Configure the ComboBox to act like a Search Bar
             cmbEquipment.Visible = true;
-            cmbEquipment.DropDownStyle = ComboBoxStyle.DropDown; // Allows typing!
-            cmbEquipment.AutoCompleteMode = AutoCompleteMode.SuggestAppend; // Shows suggestions
-            cmbEquipment.AutoCompleteSource = AutoCompleteSource.ListItems; // Suggests from the data we load
+            cmbEquipment.DropDownStyle = ComboBoxStyle.DropDown;
+            cmbEquipment.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbEquipment.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-            // 2. Hide the manual text box if you still have it on the form
-            // (You can delete it from the designer, but this ensures it's hidden)
             if ( Controls.ContainsKey ( "txtEquipmentID" ) )
                 {
                 Controls["txtEquipmentID"].Visible = false;
                 }
 
-            // 3. Load Data based on Role
             if ( isAdmin )
                 {
-                LoadAllEquipment ( ); // Admin sees everything
+                LoadAllEquipment ( );
                 }
             else
                 {
-                LoadMyEquipment ( ); // Student sees only their items
+                LoadMyEquipment ( );
                 }
             }
 
@@ -53,8 +49,8 @@ namespace GetLab.Forms.Student
             if ( dt != null && dt.Rows.Count > 0 )
                 {
                 cmbEquipment.DataSource = dt;
-                cmbEquipment.DisplayMember = "DisplayName"; // Shows "Oscilloscope - Tek (ID: 5)"
-                cmbEquipment.ValueMember = "EquipmentID";   // Stores "5"
+                cmbEquipment.DisplayMember = "DisplayName";
+                cmbEquipment.ValueMember = "EquipmentID";
                 }
             }
 
@@ -71,13 +67,12 @@ namespace GetLab.Forms.Student
             else
                 {
                 MessageBox.Show ( "You have no active items to report." );
-                if ( !isAdmin ) this.Close ( ); // Only close for students
+                if ( !isAdmin ) this.Close ( );
                 }
             }
 
         private void btnSubmit_Click ( object sender, EventArgs e )
             {
-            // Validation
             if ( cmbEquipment.SelectedValue == null )
                 {
                 MessageBox.Show ( "Please select a valid item from the list." );
@@ -90,7 +85,6 @@ namespace GetLab.Forms.Student
                 return;
                 }
 
-            // Get the ID directly from the ComboBox (works for both Admin and Student now)
             int equipmentID;
             try
                 {
@@ -101,8 +95,6 @@ namespace GetLab.Forms.Student
                 MessageBox.Show ( "Invalid selection. Please click an item from the dropdown list." );
                 return;
                 }
-
-            // Submit
             bool success = controller.SubmitReport ( loggedInUserID, equipmentID, txtDescription.Text );
 
             if ( success )

@@ -85,23 +85,19 @@ namespace GetLab.Forms.Professor
         }
 
         private void search_Click(object sender, EventArgs e)
-        {
+            {
             string keyword = searchBar.Text.Trim ( );
 
-            // Get the DataTable currently displayed in the grid
             DataTable dt = viewEquipmentProfGrid.DataSource as DataTable;
 
             if ( dt != null )
                 {
                 if ( string.IsNullOrEmpty ( keyword ) )
                     {
-                    // Show everything
                     dt.DefaultView.RowFilter = "";
                     }
                 else
                     {
-                    // Filter by Room Name
-                    // Note: This assumes the column name in SQL is 'RoomName'
                     dt.DefaultView.RowFilter = $"RoomName LIKE '%{keyword}%'";
                     }
                 }

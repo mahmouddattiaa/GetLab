@@ -17,7 +17,6 @@ namespace GetLab.Forms.Authentication
 
         private void btnSignup_Click ( object sender, EventArgs e )
             {
-            // 1. Validation
             if ( string.IsNullOrWhiteSpace ( txtName.Text ) ||
                 string.IsNullOrWhiteSpace ( txtEmail.Text ) ||
                 string.IsNullOrWhiteSpace ( txtID.Text ) ||
@@ -40,19 +39,9 @@ namespace GetLab.Forms.Authentication
                 {
                 MessageBox.Show ( "Account Created Successfully! You can now login.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information );
 
-                // --- THE CHANGE IS HERE ---
-
-                // 1. Create a new instance of the Login form
-                // (Make sure 'login' matches the exact class name of your login form)
                 login loginForm = new login ( );
-
-                // 2. Show the Login form
                 loginForm.Show ( );
-
-                // 3. Close this Create form
                 this.Close ( );
-
-                // --------------------------
                 }
             else if ( result == -1 )
                 {
@@ -68,7 +57,6 @@ namespace GetLab.Forms.Authentication
                 }
             }
 
-        // Optional: Link "Back to Login" label if you have one
         private void lblBackToLogin_Click ( object sender, EventArgs e )
             {
             this.Close ( );

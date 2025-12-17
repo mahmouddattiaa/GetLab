@@ -36,7 +36,7 @@ namespace GetLab.Forms.Assistant
                 }
             catch ( Exception ex )
                 {
-                MessageBox.Show ( "Error loading form: " + ex.Message );
+                MessageBox.Show ( "Error loading form. Please try again." );
                 }
             }
 

@@ -18,17 +18,13 @@ namespace GetLab.Forms.Assistant
 
         private void ManageLocationsForm_Load ( object sender, EventArgs e )
             {
-            // 1. Setup the Dropdown (Enforcing Option A)
             cmbType.Items.Clear ( );
             cmbType.Items.Add ( "Lab" );
             cmbType.Items.Add ( "Storage" );
 
-            // CRITICAL: Prevent typing. User MUST pick from the list.
             cmbType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbType.SelectedIndex = 0;
 
-            cmbType.SelectedIndex = 0; // Default to "Lab"
-
-            // 2. Load the list
             LoadLocations ( );
             }
 
@@ -41,7 +37,6 @@ namespace GetLab.Forms.Assistant
 
         private void btnAdd_Click ( object sender, EventArgs e )
             {
-            // Validation
             if ( string.IsNullOrWhiteSpace ( txtRoomName.Text ) )
                 {
                 MessageBox.Show ( "Please enter a Room Name." );
@@ -49,17 +44,15 @@ namespace GetLab.Forms.Assistant
                 }
 
             string name = txtRoomName.Text.Trim ( );
-            string type = cmbType.SelectedItem.ToString ( ); // Will be "Lab" or "Storage"
+            string type = cmbType.SelectedItem.ToString ( );
             int capacity = Convert.ToInt32( numCapacity.Text.ToString());
-
-            // Call Controller
             bool success = controller.AddLocation ( name, type, capacity );
 
             if ( success )
                 {
                 MessageBox.Show ( "Location Added Successfully!" );
                 txtRoomName.Clear ( );
-                LoadLocations ( ); // Refresh the grid immediately
+                LoadLocations ( );
                 }
             else
                 {

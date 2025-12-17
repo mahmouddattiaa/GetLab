@@ -61,8 +61,6 @@ namespace GetLab.Forms.Professor
             {
             login loginForm = new login ( );
             loginForm.Show ( );
-
-            // 3. Close this dashboard
             this.Close ( );
             }
         }

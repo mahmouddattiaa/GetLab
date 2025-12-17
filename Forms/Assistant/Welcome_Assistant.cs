@@ -29,10 +29,9 @@ namespace GetLab.Forms.Assistant
         }
 
         private void Welcome_Assistant_Load(object sender, EventArgs e)
-        {
-            // Center the title label horizontally
+            {
             label1.Left = (this.ClientSize.Width - label1.Width) / 2;
-        }
+            }
 
         private void btnMaintenance_Click(object sender, EventArgs e)
         {
@@ -47,18 +46,11 @@ namespace GetLab.Forms.Assistant
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
-        {
-            // 1. Close the connection (Good practice)
-            // controller.TerminateConnection(); // If you have a controller instance here
-
-            // 2. Open Login Form
-            // Assuming your login form is named 'LoginForm' or 'login'
+            {
             login loginForm = new login();
             loginForm.Show();
-
-            // 3. Close this dashboard
             this.Close();
-        }
+            }
 
         private void btnReport_Click(object sender, EventArgs e)
         {
