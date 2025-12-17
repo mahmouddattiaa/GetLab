@@ -174,8 +174,6 @@
       <DependentUpon>Welcome_student.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DatabaseScripts\README.md" />
-    <None Include="PROJECT_DESCRIPTION.md" />
-    <None Include="PROJECT_REORGANIZATION_COMPLETE.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
