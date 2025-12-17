@@ -194,6 +194,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="STUDENT_RESERVATION_FIX.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -214,6 +215,7 @@
     <Content Include="DatabaseScripts\01_Database_Schema.sql" />
     <Content Include="DatabaseScripts\02_Stored_Procedures.sql" />
     <Content Include="DatabaseScripts\03_Sample_Data.sql" />
+    <Content Include="DatabaseScripts\HOTFIX_Add_RoomReservations.sql" />
     <Content Include="DatabaseScripts\project DB.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

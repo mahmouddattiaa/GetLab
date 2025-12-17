@@ -155,5 +155,10 @@ namespace GetLab.Forms.Assistant
                 MessageBox.Show ( "Database Error Details:\n" + ex.Message, "Debug Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
                 }
             }
+
+        private void cmbCondition_SelectedIndexChanged ( object sender, EventArgs e )
+            {
+
+            }
         }
     }

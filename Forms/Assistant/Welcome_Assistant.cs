@@ -30,7 +30,8 @@ namespace GetLab.Forms.Assistant
 
         private void Welcome_Assistant_Load(object sender, EventArgs e)
         {
-
+            // Center the title label horizontally
+            label1.Left = (this.ClientSize.Width - label1.Width) / 2;
         }
 
         private void btnMaintenance_Click(object sender, EventArgs e)
@@ -66,9 +67,9 @@ namespace GetLab.Forms.Assistant
         }
 
         private void btnRoomManagement_Click ( object sender, EventArgs e )
-            {
+        {
             ManageLocationsForm locForm = new ManageLocationsForm ( );
             locForm.Show ( );
-            }
         }
+    }
 }

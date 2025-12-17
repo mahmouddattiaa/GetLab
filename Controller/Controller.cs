@@ -200,6 +200,50 @@ namespace GetLab.Controller
             return dbMan.ExecuteReader ( "sp_GetAvailableLabEquipment", null );
             }
 
+        // --- GET BUSY TIMES (To filter the checklist) ---
+        public DataTable GetEquipmentBusyTimes ( int equipID, DateTime date )
+            {
+            SqlParameter[] parameters = new SqlParameter[] {
+        new SqlParameter("@EquipmentID", equipID),
+        new SqlParameter("@SelectedDate", date.Date)
+    };
+            return dbMan.ExecuteReader ( "sp_GetEquipmentBusyTimes", parameters );
+            }
+
+        public DataTable GetRoomBusyTimes ( int locationID, DateTime date )
+            {
+            SqlParameter[] parameters = new SqlParameter[] {
+        new SqlParameter("@LocationID", locationID),
+        new SqlParameter("@SelectedDate", date.Date)
+    };
+            return dbMan.ExecuteReader ( "sp_GetRoomBusyTimes", parameters );
+            }
+
+        // --- RESERVE ACTIONS ---
+        public bool ReserveSlot ( string universityID, int equipmentID, DateTime startTime, DateTime endTime )
+            {
+            SqlParameter[] parameters = new SqlParameter[] {
+        new SqlParameter("@UniversityID", universityID),
+        new SqlParameter("@EquipmentID", equipmentID),
+        new SqlParameter("@StartTime", startTime),
+        new SqlParameter("@EndTime", endTime)
+    };
+            object result = dbMan.ExecuteScalar ( "sp_ReserveSlot", parameters );
+            return result != null && Convert.ToInt32 ( result ) == 1;
+            }
+
+        public bool ReserveRoom ( string universityID, int locationID, DateTime startTime, DateTime endTime, string purpose )
+            {
+            SqlParameter[] parameters = new SqlParameter[] {
+        new SqlParameter("@UniversityID", universityID),
+        new SqlParameter("@LocationID", locationID),
+        new SqlParameter("@StartTime", startTime),
+        new SqlParameter("@EndTime", endTime),
+        new SqlParameter("@Purpose", purpose)
+    };
+            object result = dbMan.ExecuteScalar ( "sp_ReserveRoom", parameters );
+            return result != null && Convert.ToInt32 ( result ) == 1;
+            }
         public DataTable GetAvailableStorageEquipment ( )
             {
             return dbMan.ExecuteReader ( "sp_GetAvailableStorageEquipment", null );

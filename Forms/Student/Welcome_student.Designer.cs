@@ -32,7 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.viewReservationsBT = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnlogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -85,17 +85,18 @@
             this.btnReport.UseVisualStyleBackColor = true;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
-            // button4
+            // btnlogout
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button4.Location = new System.Drawing.Point(362, 500);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(602, 80);
-            this.button4.TabIndex = 14;
-            this.button4.Text = "Logout";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnlogout.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnlogout.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnlogout.Location = new System.Drawing.Point(362, 500);
+            this.btnlogout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnlogout.Name = "btnlogout";
+            this.btnlogout.Size = new System.Drawing.Size(602, 80);
+            this.btnlogout.TabIndex = 14;
+            this.btnlogout.Text = "Logout";
+            this.btnlogout.UseVisualStyleBackColor = true;
+            this.btnlogout.Click += new System.EventHandler(this.btnlogout_Click);
             // 
             // Welcome_student
             // 
@@ -103,7 +104,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1304, 761);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnlogout);
             this.Controls.Add(this.btnReport);
             this.Controls.Add(this.viewReservationsBT);
             this.Controls.Add(this.button1);
@@ -123,6 +124,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button viewReservationsBT;
         private System.Windows.Forms.Button btnReport;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnlogout;
     }
 }

@@ -39,23 +39,38 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Uighur", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(92, 62);
+            this.label1.Font = new System.Drawing.Font("Arial", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(50, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1182, 85);
+            this.label1.Size = new System.Drawing.Size(900, 45);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Welcome to the Lab Equipment Management System";
+            this.label1.Text = "Welcome to Lab Equipment Management System";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnMaintenance
+            // 
+            this.btnMaintenance.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnMaintenance.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMaintenance.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnMaintenance.Location = new System.Drawing.Point(290, 120);
+            this.btnMaintenance.Name = "btnMaintenance";
+            this.btnMaintenance.Size = new System.Drawing.Size(420, 60);
+            this.btnMaintenance.TabIndex = 17;
+            this.btnMaintenance.Text = "Maintenance / Repairs";
+            this.btnMaintenance.UseVisualStyleBackColor = true;
+            this.btnMaintenance.Click += new System.EventHandler(this.btnMaintenance_Click);
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Location = new System.Drawing.Point(343, 236);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button1.Location = new System.Drawing.Point(290, 190);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(602, 76);
+            this.button1.Size = new System.Drawing.Size(420, 60);
             this.button1.TabIndex = 12;
             this.button1.Text = "Equipment Management";
             this.button1.UseVisualStyleBackColor = true;
@@ -63,12 +78,12 @@
             // 
             // btnRoomManagement
             // 
-            this.btnRoomManagement.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRoomManagement.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRoomManagement.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRoomManagement.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnRoomManagement.Location = new System.Drawing.Point(343, 320);
-            this.btnRoomManagement.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRoomManagement.Location = new System.Drawing.Point(290, 260);
             this.btnRoomManagement.Name = "btnRoomManagement";
-            this.btnRoomManagement.Size = new System.Drawing.Size(602, 76);
+            this.btnRoomManagement.Size = new System.Drawing.Size(420, 60);
             this.btnRoomManagement.TabIndex = 13;
             this.btnRoomManagement.Text = "Room / Storage Management";
             this.btnRoomManagement.UseVisualStyleBackColor = true;
@@ -76,12 +91,12 @@
             // 
             // btnReturn
             // 
-            this.btnReturn.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReturn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnReturn.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReturn.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnReturn.Location = new System.Drawing.Point(343, 404);
-            this.btnReturn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReturn.Location = new System.Drawing.Point(290, 330);
             this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(602, 76);
+            this.btnReturn.Size = new System.Drawing.Size(420, 60);
             this.btnReturn.TabIndex = 14;
             this.btnReturn.Text = "Reservations";
             this.btnReturn.UseVisualStyleBackColor = true;
@@ -89,12 +104,12 @@
             // 
             // btnReport
             // 
-            this.btnReport.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReport.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnReport.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReport.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnReport.Location = new System.Drawing.Point(343, 488);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReport.Location = new System.Drawing.Point(290, 400);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(602, 76);
+            this.btnReport.Size = new System.Drawing.Size(420, 60);
             this.btnReport.TabIndex = 15;
             this.btnReport.Text = "Reports";
             this.btnReport.UseVisualStyleBackColor = true;
@@ -102,36 +117,23 @@
             // 
             // btnLogout
             // 
-            this.btnLogout.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnLogout.Location = new System.Drawing.Point(343, 572);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnLogout.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.Color.Red;
+            this.btnLogout.Location = new System.Drawing.Point(290, 470);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(602, 76);
+            this.btnLogout.Size = new System.Drawing.Size(420, 60);
             this.btnLogout.TabIndex = 16;
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // btnMaintenance
-            // 
-            this.btnMaintenance.Font = new System.Drawing.Font("Microsoft Uighur", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMaintenance.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnMaintenance.Location = new System.Drawing.Point(343, 151);
-            this.btnMaintenance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnMaintenance.Name = "btnMaintenance";
-            this.btnMaintenance.Size = new System.Drawing.Size(602, 76);
-            this.btnMaintenance.TabIndex = 17;
-            this.btnMaintenance.Text = "Maintenance / Repairs";
-            this.btnMaintenance.UseVisualStyleBackColor = true;
-            this.btnMaintenance.Click += new System.EventHandler(this.btnMaintenance_Click);
-            // 
             // Welcome_Assistant
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1280, 661);
+            this.ClientSize = new System.Drawing.Size(1000, 600);
             this.Controls.Add(this.btnMaintenance);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnReport);
@@ -139,9 +141,10 @@
             this.Controls.Add(this.btnRoomManagement);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "Welcome_Assistant";
-            this.Text = "Assistantcs";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Admin Dashboard - Lab Equipment Management";
             this.Load += new System.EventHandler(this.Welcome_Assistant_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -157,5 +160,5 @@
         private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnMaintenance;
-        }
+    }
 }

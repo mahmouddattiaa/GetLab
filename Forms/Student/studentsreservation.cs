@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using GetLab.Controller;
@@ -14,128 +15,191 @@ namespace GetLab.Forms.Student
         public studentsreservation ( string userID )
             {
             InitializeComponent ( );
-            controller = new ControllerClass ( );
-            loggedInUserID = userID;
+        
+   try
+{
+              controller = new ControllerClass ( );
+     loggedInUserID = userID;
             }
-
-        private void studentsreservation_Load ( object sender, EventArgs e )
+     catch (Exception ex)
             {
-            // Default: Load Lab Equipment
-            rbLab.Checked = true;
-            LoadData ( );
-
-            // Set DatePicker format to show Time for Lab mode
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
+            MessageBox.Show(
+           $"Failed to initialize reservation form:\n\n{ex.Message}\n\nPlease check your database connection.",
+     "Initialization Error",
+        MessageBoxButtons.OK,
+   MessageBoxIcon.Error);
+                
+     // Close the form if initialization failed
+  this.Load += (s, e) => this.Close();
             }
+      }
 
-        // Helper to load correct data based on selection
-        private void LoadData ( )
+      private void studentsreservation_Load ( object sender, EventArgs e )
+      {
+        try
             {
-            DataTable dt;
-            if ( rbLab.Checked )
-                {
-                dt = controller.GetAvailableLabEquipment ( );
-                // Hint for user
-                dateTimePicker1.CustomFormat = "HH:mm"; // Show only time for today
-                }
-            else
-                {
-                dt = controller.GetAvailableStorageEquipment ( );
-                // Hint for user
-                dateTimePicker1.CustomFormat = "dd/MM/yyyy"; // Show full date
-                }
-
-            dataGridView1.DataSource = dt;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+         rbLab.Checked = true; // Default to Lab
+                dtpDate.MinDate = DateTime.Now;
+        LoadEquipmentList ( );
+    }
+       catch (Exception ex)
+      {
+MessageBox.Show(
+        $"Error loading equipment list:\n\n{ex.Message}",
+     "Load Error",
+    MessageBoxButtons.OK,
+      MessageBoxIcon.Error);
+       }
             }
 
-        // EVENT: Radio Button Changed (Switching Modes)
-        private void rbLab_CheckedChanged ( object sender, EventArgs e )
+    // 1. Load Equipment based on Mode (Lab vs Storage)
+        private void LoadEquipmentList ( )
+{
+         try
+     {
+     DataTable dt;
+       if ( rbLab.Checked )
             {
-            LoadData ( );
-            }
-
-        private void rbHome_CheckedChanged ( object sender, EventArgs e )
+                 dt = controller.GetAvailableLabEquipment ( );
+  clbTimeSlots.Visible = true; // Show slots for Lab
+   }
+  else
+   {
+      dt = controller.GetAvailableStorageEquipment ( );
+    clbTimeSlots.Visible = false; // Hide slots for Home
+     }
+     dataGridView1.DataSource = dt;
+         
+         // Auto-select first row if available
+           if (dataGridView1.Rows.Count > 0)
+      {
+        dataGridView1.Rows[0].Selected = true;
+      }
+        }
+            catch (Exception ex)
             {
-            LoadData ( );
-            }
+ MessageBox.Show(
+     $"Error loading equipment:\n\n{ex.Message}",
+   "Database Error",
+ MessageBoxButtons.OK,
+       MessageBoxIcon.Error);
+        }
+       }
 
-        // EVENT: Reserve Button
+        // 2. Populate the Checklist with FREE hours
+        private void UpdateSlots ( )
+            {
+ try
+  {
+       // Only run if in Lab Mode and an item is selected
+     if ( !rbLab.Checked || dataGridView1.SelectedRows.Count == 0 ) return;
+
+          clbTimeSlots.Items.Clear ( );
+    int equipID = Convert.ToInt32 ( dataGridView1.SelectedRows[0].Cells["EquipmentID"].Value );
+                DateTime date = dtpDate.Value.Date;
+
+      // Get busy times from DB
+  DataTable dtBusy = controller.GetEquipmentBusyTimes ( equipID, date );
+
+     // Loop 8 AM to 7 PM
+        for ( int hour = 8; hour < 19; hour++ )
+      {
+     bool isTaken = false;
+         DateTime slotStart = date.AddHours ( hour );
+                    DateTime slotEnd = date.AddHours ( hour + 1 );
+
+             // Check overlap
+   foreach ( DataRow row in dtBusy.Rows )
+           {
+ DateTime dbStart = Convert.ToDateTime ( row["StartTime"] );
+       DateTime dbEnd = Convert.ToDateTime ( row["EndTime"] );
+             if ( slotStart < dbEnd && slotEnd > dbStart ) { isTaken = true; break; }
+  }
+
+                // Add to list if free
+         if ( !isTaken )
+           {
+           clbTimeSlots.Items.Add ( new TimeSlotItem { Hour = hour, Display = $"{hour:00}:00 - {hour + 1:00}:00" } );
+             }
+           }
+        clbTimeSlots.DisplayMember = "Display";
+        }
+            catch (Exception ex)
+     {
+       MessageBox.Show(
+            $"Error updating time slots:\n\n{ex.Message}",
+     "Error",
+          MessageBoxButtons.OK,
+       MessageBoxIcon.Warning);
+            }
+      }
+
+        // Helper class for the list items
+   private class TimeSlotItem { public int Hour { get; set; } public string Display { get; set; } }
+
+        // Events
+        private void dataGridView1_SelectionChanged ( object sender, EventArgs e ) { UpdateSlots ( ); }
+   private void dtpDate_ValueChanged ( object sender, EventArgs e ) { UpdateSlots ( ); }
+        private void rbLab_CheckedChanged ( object sender, EventArgs e ) { LoadEquipmentList ( ); }
+        private void rbHome_CheckedChanged ( object sender, EventArgs e ) { LoadEquipmentList ( ); }
+
+        // 3. Reserve Button (The Merge Logic)
         private void reserveBtn_Click ( object sender, EventArgs e )
+   {
+            try
+      {
+        if ( dataGridView1.SelectedRows.Count == 0 ) { MessageBox.Show ( "Select an item." ); return; }
+    int equipID = Convert.ToInt32 ( dataGridView1.SelectedRows[0].Cells["EquipmentID"].Value );
+       DateTime date = dtpDate.Value.Date;
+
+   if ( rbLab.Checked )
+       {
+        // --- LAB MODE ---
+    if ( clbTimeSlots.CheckedItems.Count == 0 ) { MessageBox.Show ( "Select at least one time slot." ); return; }
+
+          // Get checked hours
+           List<int> hours = new List<int> ( );
+                    foreach ( TimeSlotItem item in clbTimeSlots.CheckedItems ) hours.Add ( item.Hour );
+     hours.Sort ( );
+
+              // Merge Logic: Group 9, 10, 11 into 9-12
+   for ( int i = 0; i < hours.Count; i++ )
+        {
+     int startH = hours[i];
+             int endH = startH + 1;
+
+     // Look ahead for consecutive hours
+                while ( i + 1 < hours.Count && hours[i + 1] == endH )
+             {
+      endH++;
+            i++;
+      }
+
+     // Save this block
+   controller.ReserveSlot ( loggedInUserID, equipID, date.AddHours ( startH ), date.AddHours ( endH ) );
+     }
+    MessageBox.Show ( "Reservation Successful!" );
+            UpdateSlots ( ); // Refresh list
+         }
+     else
+{
+     // --- TAKE HOME MODE ---
+     if ( date <= DateTime.Now.Date ) { MessageBox.Show ( "Take-home must be for tomorrow or later." ); return; }
+
+  // Reuse the old ReserveEquipment logic (Daily)
+     controller.ReserveEquipment ( loggedInUserID, equipID, date );
+              MessageBox.Show ( "Item Borrowed!" );
+            LoadEquipmentList ( );
+          }
+      }
+     catch (Exception ex)
             {
-            // 1. Selection Validation
-            if ( dataGridView1.SelectedRows.Count == 0 )
-                {
-                MessageBox.Show ( "Please select an item." );
-                return;
-                }
-
-            DateTime selectedDate = dateTimePicker1.Value;
-            int equipmentID = Convert.ToInt32 ( dataGridView1.SelectedRows[0].Cells["EquipmentID"].Value );
-
-            // 2. LOGIC VALIDATION (The Rules)
-            if ( rbLab.Checked )
-                {
-                // RULE: Must be TODAY
-                if ( selectedDate.Date != DateTime.Now.Date )
-                    {
-                    MessageBox.Show ( "Lab reservations must be for TODAY only." );
-                    return;
-                    }
-
-                // RULE: Must be before 7 PM (19:00)
-                if ( selectedDate.Hour >= 19 )
-                    {
-                    MessageBox.Show ( "The Lab closes at 7:00 PM. Please select an earlier time." );
-                    return;
-                    }
-
-                // RULE: Must be in the future (can't reserve for 2 hours ago)
-                if ( selectedDate < DateTime.Now )
-                    {
-                    MessageBox.Show ( "Time must be in the future." );
-                    return;
-                    }
-                }
-            else // rbHome.Checked
-                {
-                // RULE: Must be in the future
-                if ( selectedDate.Date <= DateTime.Now.Date )
-                    {
-                    MessageBox.Show ( "Take-home borrowing must be for at least one day (Tomorrow or later)." );
-                    return;
-                    }
-                }
-
-            // 3. Execute
-            bool success = controller.ReserveEquipment ( loggedInUserID, equipmentID, selectedDate );
-
-            if ( success )
-                {
-                MessageBox.Show ( "Reservation Successful!" );
-                LoadData ( ); // Refresh grid
-                }
-            else
-                {
-                MessageBox.Show ( "Reservation Failed. Item might be taken." );
-                }
-            }
-
-        // Search Logic (Works for both lists)
-        private void txtSearch_TextChanged ( object sender, EventArgs e )
-            {
-            // Note: If you want strict searching on the filtered list, 
-            // it's better to filter the DataTable directly in C# here.
-            // But for now, calling the DB search is okay, though it searches ALL items.
-            // A quick fix for the UI:
-            ( dataGridView1.DataSource as DataTable ).DefaultView.RowFilter = $"EquipmentName LIKE '%{txtSearch.Text}%'";
-            }
-
-        private void studentsreservation_FormClosing ( object sender, FormClosingEventArgs e )
-            {
-            controller.TerminateConnection ( );
+       MessageBox.Show(
+      $"Error making reservation:\n\n{ex.Message}",
+             "Reservation Error",
+          MessageBoxButtons.OK,
+           MessageBoxIcon.Error);
+}
             }
         }
     }

@@ -343,6 +343,113 @@ BEGIN
 END
 GO
 
+USE GetLabDB;
+GO
+
+-- SP 27: Get Existing Reservations for an Equipment on a Date
+CREATE PROCEDURE sp_GetEquipmentReservationsByDate
+    @EquipmentID INT,
+    @SelectedDate DATE
+AS
+BEGIN
+    SELECT ReservationDate AS StartTime, DueDate AS EndTime
+    FROM EquipmentReservations
+    WHERE EquipmentID = @EquipmentID
+      AND CAST(ReservationDate AS DATE) = @SelectedDate
+      AND Status = 'Active';
+END
+GO
+
+-- SP 28: Get Existing Reservations for a Room on a Date
+CREATE PROCEDURE sp_GetRoomReservationsByDate
+    @LocationID INT,
+    @SelectedDate DATE
+AS
+BEGIN
+    SELECT StartTime, EndTime
+    FROM RoomReservations
+    WHERE LocationID = @LocationID
+      AND CAST(StartTime AS DATE) = @SelectedDate;
+END
+GO
+CREATE OR ALTER PROCEDURE sp_GetEquipmentBusyTimes
+    @EquipmentID INT,
+    @SelectedDate DATE
+AS
+BEGIN
+    SELECT ReservationDate AS StartTime, DueDate AS EndTime
+    FROM EquipmentReservations
+    WHERE EquipmentID = @EquipmentID
+      AND CAST(ReservationDate AS DATE) = @SelectedDate
+      AND Status = 'Active';
+END
+GO
+
+-- 3. SP: Get "Busy" Times for Rooms (To hide them in the list)
+CREATE OR ALTER PROCEDURE sp_GetRoomBusyTimes
+    @LocationID INT,
+    @SelectedDate DATE
+AS
+BEGIN
+    SELECT StartTime, EndTime
+    FROM RoomReservations
+    WHERE LocationID = @LocationID
+      AND CAST(StartTime AS DATE) = @SelectedDate;
+END
+GO
+
+-- 4. SP: Reserve Equipment Slot (Specific Start/End Time)
+CREATE OR ALTER PROCEDURE sp_ReserveSlot
+    @UniversityID NVARCHAR(20),
+    @EquipmentID INT,
+    @StartTime DATETIME,
+    @EndTime DATETIME
+AS
+BEGIN
+    DECLARE @InternalUserID INT;
+    SELECT @InternalUserID = UserID FROM Users WHERE UniversityID = @UniversityID;
+
+    IF @InternalUserID IS NOT NULL
+    BEGIN
+        -- Insert reservation. Note: We do NOT change Equipment Status to 'Reserved' 
+        -- because it's only reserved for a specific time, not 24/7.
+        INSERT INTO EquipmentReservations (UserID, EquipmentID, ReservationDate, DueDate, Status)
+        VALUES (@InternalUserID, @EquipmentID, @StartTime, @EndTime, 'Active');
+        
+        SELECT 1 AS Result;
+    END
+    ELSE
+    BEGIN
+        SELECT 0 AS Result;
+    END
+END
+GO
+
+-- 5. SP: Reserve Room (Specific Start/End Time)
+CREATE OR ALTER PROCEDURE sp_ReserveRoom
+    @UniversityID NVARCHAR(20),
+    @LocationID INT,
+    @StartTime DATETIME,
+    @EndTime DATETIME,
+    @Purpose NVARCHAR(100)
+AS
+BEGIN
+    DECLARE @InternalUserID INT;
+    SELECT @InternalUserID = UserID FROM Users WHERE UniversityID = @UniversityID;
+
+    IF @InternalUserID IS NOT NULL
+    BEGIN
+        INSERT INTO RoomReservations (UserID, LocationID, StartTime, EndTime, Purpose)
+        VALUES (@InternalUserID, @LocationID, @StartTime, @EndTime, @Purpose);
+        
+        SELECT 1 AS Result;
+    END
+    ELSE
+    BEGIN
+        SELECT 0 AS Result;
+    END
+END
+GO
 -- SP 24: Get Available STORAGE Equipment (Daily / Take-Home)
 CREATE PROCEDURE sp_GetAvailableStorageEquipment
 AS

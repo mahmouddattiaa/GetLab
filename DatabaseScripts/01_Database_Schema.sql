@@ -11,6 +11,7 @@
  * - Locations: Labs and storage rooms
  * - Equipment: All lab equipment items
  * - EquipmentReservations: Checkout/return records
+ * - RoomReservations: Room booking records
  * - MaintenanceReports: Damaged equipment tracking
  * =============================================================
  */
@@ -96,6 +97,26 @@ CREATE TABLE EquipmentReservations (
         CHECK (Status IN ('Active', 'Completed', 'Cancelled', 'Overdue')),
     CONSTRAINT FK_Res_User FOREIGN KEY (UserID) REFERENCES Users(UserID),
     CONSTRAINT FK_Res_Equipment FOREIGN KEY (EquipmentID) REFERENCES Equipment(EquipmentID)
+);
+GO
+
+-- =============================================
+-- TABLE: RoomReservations
+-- =============================================
+-- Tracks room/lab reservations
+PRINT 'Creating table: RoomReservations';
+CREATE TABLE RoomReservations (
+    RoomReservationID INT PRIMARY KEY IDENTITY(1,1),
+    UserID INT NOT NULL,
+    LocationID INT NOT NULL,
+    StartTime DATETIME NOT NULL,     -- When the room booking starts
+    EndTime DATETIME NOT NULL,           -- When the room booking ends
+    Purpose NVARCHAR(100) NULL, -- Purpose of the reservation
+    Status NVARCHAR(20) DEFAULT 'Active' 
+    CHECK (Status IN ('Active', 'Completed', 'Cancelled')),
+    CreatedDate DATETIME DEFAULT GETDATE(),
+    CONSTRAINT FK_RoomRes_User FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    CONSTRAINT FK_RoomRes_Location FOREIGN KEY (LocationID) REFERENCES Locations(LocationID)
 );
 GO
 

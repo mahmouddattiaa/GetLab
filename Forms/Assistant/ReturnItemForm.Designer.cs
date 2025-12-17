@@ -99,6 +99,7 @@
             this.cmbCondition.Name = "cmbCondition";
             this.cmbCondition.Size = new System.Drawing.Size(186, 28);
             this.cmbCondition.TabIndex = 5;
+            this.cmbCondition.SelectedIndexChanged += new System.EventHandler(this.cmbCondition_SelectedIndexChanged);
             // 
             // txtEquipmentID
             // 

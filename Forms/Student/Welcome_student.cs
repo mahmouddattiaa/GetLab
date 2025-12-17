@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GetLab.Forms.Authentication;
+using System;
 using System.Windows.Forms;
 
 namespace GetLab.Forms.Student
@@ -48,5 +49,14 @@ namespace GetLab.Forms.Student
         {
             Application.Exit();
         }
+
+        private void btnlogout_Click ( object sender, EventArgs e )
+            {
+            login loginForm = new login ( );
+            loginForm.Show ( );
+
+            // 3. Close this dashboard
+            this.Close ( );
+            }
         }
     }
