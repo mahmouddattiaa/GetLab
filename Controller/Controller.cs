@@ -116,7 +116,7 @@ namespace GetLab.Controller
         new SqlParameter("@LabStatus", labStatus)
             };
 
-            return dbMan.ExecuteReader("sp_GetRoomNameByStatus", parameters);
+            return dbMan.ExecuteReader("sp_GetRoomNameByStatusLocation", parameters);
         }
 
         public DataTable GetAvailableEquipmentByLab(string locationID)

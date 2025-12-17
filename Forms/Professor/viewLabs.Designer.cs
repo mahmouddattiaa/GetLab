@@ -114,7 +114,6 @@
             this.homeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.homeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.homeBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.homeBtn.Image = global::GetLab.Properties.Resources.home1;
             this.homeBtn.Location = new System.Drawing.Point(-1, 3);
             this.homeBtn.Name = "homeBtn";
             this.homeBtn.Size = new System.Drawing.Size(119, 87);
@@ -132,7 +131,6 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Transparent;
-            this.button1.Image = global::GetLab.Properties.Resources.reserve;
             this.button1.Location = new System.Drawing.Point(98, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(119, 87);
